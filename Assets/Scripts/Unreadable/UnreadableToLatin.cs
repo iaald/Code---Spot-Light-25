@@ -1,70 +1,18 @@
+using System;
 using TMPro;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace TextVFX
 {
-    public class UnreadableToLatin : MonoBehaviour, IUnreadableMasker
+    public class UnreadableToLatin : MonoBehaviour, IUnreadableConverter
     {
         [Header("基本设置")]
-        public bool isDoUnreadable = true;
-        public TMP_FontAsset Font;
         [TextArea] public string Text = "";
         private string _maskedText = "";
         [SerializeField] private TextMeshProUGUI textMeshProFace;
         [SerializeField] private TextMeshProUGUI textMeshProContent;
-
-        void Start()
-        {
-            DoFullLengthMask();
-            SyncTMP();
-            Debug.Log(ComputeFaceContLenRatio());
-        }
-
-        bool isLastframDoUnreadable;
-        void Update()
-        {
-            if (isLastframDoUnreadable != isDoUnreadable)
-            {
-                SyncTMP();
-            }
-            if (TryGetMouseCharIndexInString(textMeshProContent, out int srcIndex))
-            {
-                Debug.Log($"Mouse over char (source index): {srcIndex}");
-            }
-            isLastframDoUnreadable = isDoUnreadable;
-        }
-
-
-        #region Unreadable Mask Interface
-        public void DoMask()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void RemoveMask()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SetBlur(float radius)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SetIntensity(float intensity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SetRange(int S, int E)
-        {
-            throw new System.NotImplementedException();
-        }
-        #endregion
-
 
         #region Unreadable Converter
         public static string ConvertUnreadableLatin(string inStr, int key = 12345, int offset = 0)
@@ -73,24 +21,17 @@ namespace TextVFX
             const int lastChar = 0x04FF;
             const int rangeSize = lastChar - firstChar + 1;
 
-            var resultChars = new char[inStr.Length];
+            int length = inStr.Length;
+            // 使用stackalloc避免堆分配（适用于小字符串）
+            Span<char> resultChars = length <= 256
+                ? stackalloc char[length]
+                : new char[length];
 
-            var iptChars = new char[inStr.Length];
-            for (int i = 0; i < inStr.Length; i++)
+            for (int i = 0; i < length; i++)
             {
-                iptChars[i] = inStr[(i + offset) % inStr.Length];
-            }
-
-            Debug.Log(new string(iptChars));
-
-            for (int i = 0; i < iptChars.Length; i++)
-            {
-
-                int hash = (iptChars[i] * 397) ^ (i * key);
-                int randomChar = firstChar + (hash % rangeSize);
-
-                if (randomChar < firstChar) randomChar += rangeSize;
-                if (randomChar > lastChar) randomChar -= rangeSize;
+                char sourceChar = inStr[(i + offset) % length];
+                int hash = (sourceChar * 397) ^ (i * key);
+                int randomChar = firstChar + (math.abs(hash) % rangeSize);
 
                 resultChars[i] = (char)randomChar;
             }
@@ -98,32 +39,34 @@ namespace TextVFX
             return new string(resultChars);
         }
 
-        public void DoFullLengthMask()
+        public void GenerateFullLengthMask()
         {
             _maskedText = ConvertUnreadableLatin(Text);
 
             float rt = ComputeFaceContLenRatio();
 
-            if ((rt - 1) * Text.Length < 2)
+            Debug.Log(rt);
+
+            if ((rt - 1) * Text.Length < 0.5)
             {
                 return;
             }
             else
             {
-                // This will skip if mask is shorted than content
-                int inc_copy = (int)Mathf.Ceil(rt) - 1;
-                for (int i = 1; i <= inc_copy; i++)
+                // This will be skipped if mask is shorted than content
+                int inc_copy = (int)Mathf.Ceil(rt);
+                for (int i = 1; i < inc_copy; i++)
                 {
                     _maskedText += ConvertUnreadableLatin(Text, offset: i);
                 }
                 // Buggy: if generated new Mask goes into new line, this method dosen't work,
                 // for it take lask char as the farthest one.
                 int rightIdx = (int)Mathf.Round(_maskedText.Length * ComputeFaceContLenRatio());
-                rightIdx = math.min(rightIdx + 1, _maskedText.Length - 1); // Add 1 for tail
+                rightIdx = math.min(rightIdx, _maskedText.Length); // Add 1 for tail
                 _maskedText = _maskedText[..rightIdx];
             }
+            Debug.Log(ComputeFaceContLenRatio());
         }
-
         #endregion
 
 
@@ -157,35 +100,62 @@ namespace TextVFX
             var textInfo = textMeshPro.textInfo;
             if (charIdx < 0 || charIdx >= textInfo.characterCount) return false;
 
-            // 关键：TMP_CharacterInfo.index 是该字符在源字符串中的下标
+            // TMP_CharacterInfo.index 是该字符在源字符串中的下标
             sourceIndex = textInfo.characterInfo[charIdx].index;
             return sourceIndex >= 0;
         }
 
         public float ComputeFaceContLenRatio()
         {
+            if (string.IsNullOrEmpty(_maskedText) || string.IsNullOrEmpty(Text))
+                throw new NullReferenceException("Mask or Content TMP is empty.");
+
             TMP_TextInfo f_textInfo = this.textMeshProFace.GetTextInfo(_maskedText);
-            var f = f_textInfo.characterInfo[_maskedText.Length - 1].topRight;
-            var fs = f_textInfo.characterInfo[0].topLeft;
+            if (f_textInfo.characterCount == 0) return 1f;
+            var f = f_textInfo.characterInfo[f_textInfo.characterCount - 1].topRight;
 
             TMP_TextInfo c_textInfo = this.textMeshProContent.GetTextInfo(Text);
-            var c = c_textInfo.characterInfo[Text.Length - 1].topRight;
+            if (c_textInfo.characterCount == 0) return 1f;
+            var c = c_textInfo.characterInfo[c_textInfo.characterCount - 1].topRight;
             var cs = c_textInfo.characterInfo[0].topLeft;
-            Debug.Log(f + " " + fs + "\n" + c + " " + cs);
-            return Mathf.Abs(c.x - cs.x) / Mathf.Abs(f.x - fs.x);
+
+            float denominator = Mathf.Abs(f.x - cs.x);
+            if (denominator < 0.0001f) return 1f;  // 防止除零
+
+            return Mathf.Abs(c.x - cs.x) / denominator;
         }
 
         #endregion
 
 
-        #region In Editor Helper
-        void SyncTMP()
+        #region Binding
+        public TextMeshProUGUI GetUnreadableTMP()
         {
-            if (textMeshProFace != null)
-            {
-                textMeshProFace.text = isDoUnreadable ? _maskedText : Text;
-                textMeshProContent.text = Text;
-            }
+            return textMeshProFace;
+        }
+
+        public TextMeshProUGUI GetContentTMP()
+        {
+            return textMeshProContent;
+        }
+
+        public bool GetPiontedIndex(IUnreadableConverter.TMP_WHERE where, out int index)
+        {
+            return this.TryGetMouseCharIndexInString(
+                where == IUnreadableConverter.TMP_WHERE.Content ?
+                textMeshProContent : textMeshProFace
+                , out index
+            );
+        }
+
+        public string GetTextUnreadable()
+        {
+            return _maskedText;
+        }
+
+        public string GetTextContent()
+        {
+            return Text;
         }
         #endregion
     }
