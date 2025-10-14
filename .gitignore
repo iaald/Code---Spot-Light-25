@@ -110,5 +110,8 @@ crashlytics-build.properties
 # QFramework Examples
 /[Aa]ssets/QFramework/ToolKits/*/*.unitypackage*
 /[Aa]ssets/QFramework/ToolKits/*/*.unitypackage.meta*
+
+# Test/Dev Builds
+/testRun/
 Thebirthdayparty/Assets/Test.unity
 Thebirthdayparty/Assets/Test.unity.meta
