@@ -2,6 +2,7 @@ using System.Collections;
 using TextVFX;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UnreadableMasker : UnreadableToLatin, IUnreadableMasker
 {
@@ -17,15 +18,21 @@ public class UnreadableMasker : UnreadableToLatin, IUnreadableMasker
     private TextMeshProUGUI Unreadable;
     private TextMeshProUGUI Content;
     public TextMeshProUGUI Filtered;
+    public Canvas canvas;
     
     private int _lastVisibleIndex = -2; // 使用-2作为未初始化状态
     private bool _isDirty = false;
 
+    private Material textMaterial;
+    private RectTransform textRectTransform;
     void Start()
     {
         Unreadable = GetUnreadableTMP();
         Content = GetContentTMP();
 
+        textMaterial = Unreadable.fontSharedMaterial;
+        textRectTransform = Unreadable.GetComponent<RectTransform>();
+        
         Refresh();
         UpdateFilteredText(-1); // 初始化为全空格
         SyncTMP();
@@ -33,6 +40,15 @@ public class UnreadableMasker : UnreadableToLatin, IUnreadableMasker
     
     void Update()
     {
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            textRectTransform,
+            Mouse.current.position.ReadValue(),
+            canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera,
+            out Vector2 mousePos
+        );
+        // 更新 Shader 参数
+        textMaterial.SetVector("_MousePosition", new Vector4(mousePos.x, mousePos.y, 0, 0));
+
         if (GetPiontedIndex(IUnreadableConverter.TMP_WHERE.Content, out int srcIndex))
         {
             if (srcIndex != _lastVisibleIndex)
