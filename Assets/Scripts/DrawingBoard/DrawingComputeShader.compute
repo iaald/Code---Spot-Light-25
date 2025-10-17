@@ -1,0 +1,74 @@
+#pragma kernel CSDraw
+
+RWTexture2D<float4> Result;
+float4 brushColor;
+int brushSize;
+float4 currentPos;
+float4 lastPos;
+bool isNewStroke;
+float2 textureSize;
+
+// 计算点到线段的距离
+float DistanceToLine(float2 p, float2 lineStart, float2 lineEnd)
+{
+    float2 lineDir = lineEnd - lineStart;
+    float lineLength = length(lineDir);
+    
+    if (lineLength < 0.0001)
+        return distance(p, lineStart);
+    
+    float2 normalizedDir = lineDir / lineLength;
+    float t = dot(p - lineStart, normalizedDir);
+    t = clamp(t, 0.0, lineLength);
+    
+    float2 projection = lineStart + normalizedDir * t;
+    return distance(p, projection);
+}
+
+// 在指定位置绘制圆形
+void DrawCircle(int2 pixelPos, float2 center, int radius)
+{
+    float dist = distance(float2(pixelPos), center);
+    if (dist <= radius)
+    {
+        Result[pixelPos] = brushColor;
+    }
+}
+
+// 绘制线条
+void DrawLine(int2 pixelPos, float2 start, float2 end, int radius)
+{
+    float dist = DistanceToLine(float2(pixelPos), start, end);
+    if (dist <= radius)
+    {
+        Result[pixelPos] = brushColor;
+    }
+}
+
+[numthreads(8,8,1)]
+void CSDraw (uint3 id : SV_DispatchThreadID)
+{
+    uint width, height;
+    Result.GetDimensions(width, height);
+    
+    // 确保线程在纹理范围内
+    if (id.x >= width || id.y >= height)
+        return;
+    
+    int2 pixelPos = int2(id.x, id.y);
+    
+    // 使用像素坐标（不再需要转换）
+    float2 currentPixel = float2(currentPos.x, currentPos.y);
+    float2 lastPixel = float2(lastPos.x, lastPos.y);
+    
+    if (isNewStroke)
+    {
+        // 新笔画，绘制圆形
+        DrawCircle(pixelPos, currentPixel, brushSize);
+    }
+    else
+    {
+        // 绘制连续线条
+        DrawLine(pixelPos, lastPixel, currentPixel, brushSize);
+    }
+}
