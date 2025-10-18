@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfb1ac0aa0561fe4296c3359bc56c9cd, type: 3}
+  m_Name: InstallerSetting_0
+  m_EditorClassIdentifier: 
+  TitleBg: {r: 0, g: 0, b: 0, a: 1}
+  TitleText: {r: 1, g: 1, b: 1, a: 1}
+  OptionBg: {r: 0.5622641, g: 0.14421377, b: 0, a: 1}
+  OptionText: {r: 1, g: 1, b: 1, a: 1}
+  Title: "Dinwows\u5B89\u88C5\u5F15\u5BFC"
+  Options:
+  - question: "\u624B\u52A8\u5B89\u88C5"
+    options:
+    - "\u662F"
+  - question: "\u521B\u5EFA\u5B58\u50A8\u9694\u79BB"
+    options:
+    - "[\u4E0D\u53EF\u7528]"
+    - "\u5C1D\u8BD5"
+    - "\u4E0D\u5B8C\u5168"
+  - question: "\u9009\u62E9\u5B89\u88C5\u4ECB\u8D28(.iso)"
+    options:
+    - "\u201C\u6211\u731C\u662F\u4E0B\u5348\u56DB\u70B9\u201D"
+    - "\u201C\u4E0D\uFF0C\u65E9\u4E0A\u4E5D\u70B9\uFF1F\u201D"
+    - "\u201C\u8FD9\u6709\u610F\u4E49\u5417\uFF1F\u770B\u4E0B\u624B\u673A\uFF1F\u201D"
