@@ -21,6 +21,21 @@ namespace DataSystem
 
     public partial class GameProgressData
     {
+        public bool WriteToObject<T>(string fieldName, T value)
+        {
+            var field = this.GetType().GetField(fieldName,
+                System.Reflection.BindingFlags.Public |
+                System.Reflection.BindingFlags.NonPublic |
+                System.Reflection.BindingFlags.Instance);
+            if (field != null && field.FieldType.IsAssignableFrom(typeof(T)))
+            {
+                field.SetValue(this, value);
+                return true;
+            }
+            return false;
+        }
+
         [JsonIgnore] public bool IsNewGame => !System.IO.File.Exists(Path);
+        public string userName = "";
     }
 }

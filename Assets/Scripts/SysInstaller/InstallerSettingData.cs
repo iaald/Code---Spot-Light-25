@@ -7,6 +7,7 @@ public class InstallerSettingData : ScriptableObject
     [Serializable]
     public class Option
     {
+        public bool UseInput = false;
         public string question;
         public string[] options;
     }

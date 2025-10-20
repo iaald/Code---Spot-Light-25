@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfb1ac0aa0561fe4296c3359bc56c9cd, type: 3}
+  m_Name: InstallerSetting_1
+  m_EditorClassIdentifier: 
+  TitleBg: {r: 0, g: 0, b: 0, a: 1}
+  TitleText: {r: 1, g: 1, b: 1, a: 1}
+  OptionBg: {r: 0.5622641, g: 0.14421377, b: 0, a: 1}
+  OptionText: {r: 1, g: 1, b: 1, a: 1}
+  Title: "\u91CD\u7F6E\u7528\u6237\u4FE1\u606F"
+  Options:
+  - UseInput: 0
+    question: "\u73B0\u5728\u662F\u51E0\u70B9\u6765\u7740\uFF1F"
+    options:
+    - "\u201C\u6211\u731C\u662F\u4E0B\u5348\u56DB\u70B9\u201D"
+    - "\u201C\u4E0D\uFF0C\u65E9\u4E0A\u4E5D\u70B9\uFF1F\u201D"
+    - "\u201C\u8FD9\u6709\u610F\u4E49\u5417\uFF1F\u770B\u4E0B\u624B\u673A\uFF1F\u201D"
+  - UseInput: 1
+    question: "\u90A3\u7B97\u4E86\uFF0C\u6211\u53EB\u4EC0\u4E48\uFF1F"
+    options: []
+  - UseInput: 0
+    question: "\u5BF9\uFF0C\u6211\u53EB$2$\u3002\u4F46\u6211\u4E3A\u4EC0\u4E48\u53EB$2$\uFF1F"
+    options:
+    - "\u201C\u6211\u4E5F\u4E0D\u77E5\u9053\u201D"
+    - "\u201C\u6211\u77E5\u9053\uFF0C\u4F46\u6211\u61D2\u5F97\u89E3\u91CA\u4E86\u201D"
