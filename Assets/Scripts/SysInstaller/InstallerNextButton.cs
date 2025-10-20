@@ -43,6 +43,10 @@ public class InstallerNextButton : MonoBehaviour
         }
         installerController.LoadNewMenu(settingDatas[i]);
     }
+    public void SwitchToScene(string sceneName)
+    {
+        SceneMng.Instance.SwitchScene(sceneName);
+    }
     public void SaveSnapshotToObject()
     {
         var t = from p in contentMappings
