@@ -5,10 +5,9 @@ using UnityEngine;
 
 namespace Kuchinashi.DataSystem
 {
-    public abstract partial class ReadableAndWriteableData : IReadableData , IWriteableData
+    public abstract partial class ReadableAndWriteableData : IReadableData , IWriteableData, IHasPath
     {
-        public abstract string Path { get; }
-
+        public abstract string Path { get; set; }
         public void Serialize()
         {
             if (File.Exists(Path)) File.Delete(Path);
@@ -50,5 +49,7 @@ namespace Kuchinashi.DataSystem
                 return false;
             }
         }
+
+        public abstract void Init(string path);
     }
 }

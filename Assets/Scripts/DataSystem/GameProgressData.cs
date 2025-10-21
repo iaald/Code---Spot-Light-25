@@ -9,7 +9,12 @@ namespace DataSystem
 {
     public partial class GameProgressData : ReadableAndWriteableData, ISingleton
     {
-        [JsonIgnore] public override string Path { get => System.IO.Path.Combine(Application.persistentDataPath, "save"); }
+        [JsonIgnore]
+        public override string Path
+        {
+            get => System.IO.Path.Combine(Application.persistentDataPath, "save");
+            set { }
+        }
         public static GameProgressData Instance
         {
             get => _instance ??= new GameProgressData().DeSerialize<GameProgressData>();
@@ -17,6 +22,11 @@ namespace DataSystem
         }
         private static GameProgressData _instance;
         public void OnSingletonInit() { }
+
+        public override void Init(string path)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
     public partial class GameProgressData

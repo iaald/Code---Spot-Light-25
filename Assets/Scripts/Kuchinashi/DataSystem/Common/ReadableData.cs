@@ -11,10 +11,9 @@ using QFramework;
 
 namespace Kuchinashi.DataSystem
 {
-    public abstract partial class ReadableData : IReadableData
+    public abstract partial class ReadableData : IReadableData, IHasPath
     {
-        public abstract string Path { get; }
-
+        public abstract string Path { get; set; }
         public virtual IReadableData DeSerialize()
         {
             if (string.IsNullOrEmpty(Path) || !File.Exists(Path)) return null;
@@ -29,6 +28,10 @@ namespace Kuchinashi.DataSystem
 
             var settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto };
             return JsonConvert.DeserializeObject<T>(File.ReadAllText(Path), settings);
+        }
+        public void Init(string path)
+        {
+            throw new NotImplementedException();
         }
 
         public virtual bool Validate<T>(out T value) where T : IReadableData, new()

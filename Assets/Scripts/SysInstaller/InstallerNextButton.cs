@@ -54,8 +54,6 @@ public class InstallerNextButton : MonoBehaviour
                 select p;
         foreach (var cm in t)
         {
-            Debug.Log(installerController.GetRightValue(cm.blckIdx) +
-            ";\nField: " + cm.fieldName);
             if (
             GameProgressData.Instance.WriteToObject(
                 cm.fieldName,

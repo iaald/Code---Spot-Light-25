@@ -33,9 +33,9 @@ namespace SimSys
 
         void Start()
         {
-            ProcessManager.Fork(0, "worker1");
-            uint p = ProcessManager.Fork(0, "worker2");
-            ProcessManager.Fork(p, "child");
+            SimFileSystem simFileSystem = new();
+            var a = simFileSystem.GetDataObject<DirectorySave>("_哪儿来的");
+            a.Load();
         }
 
         private void InitializeWindowManager()
@@ -65,18 +65,7 @@ namespace SimSys
             Debug.Log($"Window Manager initialized at PID {wmPid}");
         }
 
-        void Update()
-        {
-            // 每帧更新所有进程的行为
-            ProcessManager.UpdateProcesses();
-
-            // 调试快捷键
-            if (Keyboard.current.pKey.IsPressed())
-            {
-                PrintProcessTree();
-            }
-        }
-
+        [ContextMenu("pstree()")]
         public void PrintProcessTree()
         {
             Debug.Log("=== Process Tree ===\n" + ProcessManager.GetProcessTree());

@@ -4,9 +4,13 @@ using Newtonsoft.Json;
 
 namespace Kuchinashi.DataSystem
 {
-    public abstract partial class WriteableData : IWriteableData
+    public abstract partial class WriteableData : IWriteableData, IHasPath
     {
-        public abstract string Path { get; }
+        public abstract string Path { get; set; }
+        public void Init(string path)
+        {
+            throw new NotImplementedException();
+        }
 
         public void Serialize()
         {
