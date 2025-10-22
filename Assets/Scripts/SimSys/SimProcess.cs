@@ -103,7 +103,6 @@ namespace SimSys
             // 向父进程发送 SIGCHLD
             if (processes.ContainsKey(process.Ppid))
             {
-                Debug.Log(process.Ppid);
                 SendSignal(process.Ppid, new Signal(SIGS.SIGCHLD, pid));
             }
             

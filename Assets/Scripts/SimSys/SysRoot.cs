@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,7 +8,7 @@ namespace SimSys
     {
         public static SysRoot Instance { get; private set; }
         public ProcessManager ProcessManager { get; private set; }
-
+        public SimFileSystem SimFileSystem { get; private set; }
         // 窗口管理器的 PID
         public const uint WINDOW_MANAGER_PID = 1;
 
@@ -24,18 +25,12 @@ namespace SimSys
 
             // 初始化进程管理器
             ProcessManager = new ProcessManager();
+            SimFileSystem = new SimFileSystem();
 
             // 创建窗口管理器进程
             InitializeWindowManager();
 
             Debug.Log("SimSys initialized");
-        }
-
-        void Start()
-        {
-            SimFileSystem simFileSystem = new();
-            var a = simFileSystem.GetDataObject<DirectorySave>("_哪儿来的");
-            a.Load();
         }
 
         private void InitializeWindowManager()

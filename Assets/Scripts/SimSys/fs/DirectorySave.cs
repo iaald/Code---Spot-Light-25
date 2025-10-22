@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using DataSystem;
@@ -15,7 +16,6 @@ public class DirectorySave : ReadableAndWriteableData, ISimFile
         get { return System.IO.Path.Combine(Application.persistentDataPath, _Path); }
         set
         {
-            Debug.Log("I changed: " + value);
             _Path = value;
         }
     }
@@ -32,12 +32,15 @@ public class DirectorySave : ReadableAndWriteableData, ISimFile
     public bool _isDirectory = true;
     [JsonIgnore] public string FsPath => _Path;
 
-    public bool Load()
+    public List<string> contents = new();
+
+    public bool Load(out List<string> content)
     {
         Debug.Log("User Name: " + GameProgressData.Instance.userName);
         Debug.Log("This is: " + Name);
         Debug.Log((IsDirectory ? "Dir" : "File") + ": " + FsPath);
         // this.Serialize();
+        content = this.contents;
         return true;
     }
 }

@@ -1,5 +1,7 @@
 using UnityEngine;
 using Kuchinashi.DataSystem;
+using MoonSharp.VsCodeDebugger.SDK;
+using System.Collections.Generic;
 namespace SimSys
 {
     public class SimFileSystem
@@ -16,6 +18,6 @@ namespace SimSys
         public string Name { get; }
         public string FsPath { get; }
         public bool IsDirectory { get; }
-        public bool Load();
+        public bool Load(out List<string> content);
     }
 }
