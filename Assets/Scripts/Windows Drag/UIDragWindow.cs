@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class UIDragWindow : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
-    [Header("¹ÒÉÏÔÊĞí±»ÍÏ¶¯µÄheader²¿·Ö")]
+    [Header("æŒ‚ä¸Šå…è®¸è¢«æ‹–åŠ¨çš„headeréƒ¨åˆ†")]
     public RectTransform dragArea;
 
     private RectTransform rectTransform;
@@ -19,7 +19,7 @@ public class UIDragWindow : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        // ¼ì²éÊÇ·ñµã»÷ÔÚÔÊĞíÍÏ¶¯µÄÇøÓòÖĞ
+        // æ£€æŸ¥æ˜¯å¦ç‚¹å‡»åœ¨å…è®¸æ‹–åŠ¨çš„åŒºåŸŸä¸­
         if (dragArea != null)
         {
             if (!RectTransformUtility.RectangleContainsScreenPoint(dragArea, eventData.position, eventData.pressEventCamera))
@@ -31,10 +31,10 @@ public class UIDragWindow : MonoBehaviour, IPointerDownHandler, IDragHandler
 
         canDrag = true;
 
-        //UIÖÃ¶¥
+        //UIç½®é¡¶
         rectTransform.SetAsLastSibling();
 
-        // ¼ÆËãÊó±êµã»÷µãÏà¶ÔÓÚÕû¸öÃæ°åµÄÎ»ÖÃÆ«ÒÆ
+        // è®¡ç®—é¼ æ ‡ç‚¹å‡»ç‚¹ç›¸å¯¹äºæ•´ä¸ªé¢æ¿çš„ä½ç½®åç§»
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             rectTransform, eventData.position, eventData.pressEventCamera, out offset);
     }

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5003776894938848126}
   - component: {fileID: 8433582025171857562}
   - component: {fileID: 8658741079520840626}
-  - component: {fileID: 7174948917928746702}
   m_Layer: 5
   m_Name: IconNop
   m_TagString: Untagged
@@ -121,17 +120,3 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7174948917928746702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8938940726827040668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ffa24235d54eb446916f466b81088ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDirectory: 0
-  FsPath: _IconNop
