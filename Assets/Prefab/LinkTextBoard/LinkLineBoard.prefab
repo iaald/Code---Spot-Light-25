@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3259666506393607312}
   - component: {fileID: 6686219846188033460}
   - component: {fileID: 2592716554882114706}
+  - component: {fileID: 8483290870868686456}
   m_Layer: 0
   m_Name: LinkLineBoard
   m_TagString: Untagged
@@ -74,13 +75,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f54ce091ca2fe48a9c87588878d540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventCamera: {fileID: 0}
   squareSprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
   arrowSprite: {fileID: -4346244404228752641, guid: 929e1ebaf10208f4383971dd7878940b, type: 3}
   endpointSprite: {fileID: -7242902979925661857, guid: 0dd6774dda1aca24098c97dfd0f79e7a, type: 3}
   rows: 4
   cols: 4
   inactiveColor: {r: 0, g: 0, b: 0, a: 1}
-  activeColor: {r: 0, g: 1, b: 0, a: 1}
+  activeColor: {r: 0, g: 0.6156863, b: 0, a: 1}
+  correctAnswers: []
+--- !u!114 &8483290870868686456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3550340727669871416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ae50e24eb685c479b2a51dcad7ef52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  note: "\u5982\u4F55\u4F7F\u7528\uFF1A\n- \u628A\u8FD9\u4E2A\u9884\u5236\u4F53\u62D6\u51FA\u6765\n-
+    \u5C06\u573A\u666F\u4E2D\u7684\u4E8B\u4EF6\u6444\u50CF\u673A\u62D6\u7ED9\u7EC4\u4EF6\n-
+    \u786E\u5B9A\u5B83\u6240\u5728\u7684Canvas\u662FCamera Space Overlay\uFF0C\n\u4E14\u4E0E\u4E0A\u9762\u7684Camera\u76F8\u5BF9\u5E94\n-
+    \u590D\u5236\u4EFB\u610F\u4E2A\u6570\u7684TextGrid\uFF0C\n\u5F53\u7136\u4E5F\u53EF\u4EE5\u62D6\u5165\u90A3\u4E2A\u9884\u5236\u4F53\uFF0C\u4E00\u6837\u7684\n-
+    \u8C03\u6574Grid Layout\u548C\u6B64\u5904\u7EC4\u4EF6\u4E2D\u7684\u884C\u5217\u6570\u53C2\u6570\n-
+    \u6DFB\u52A0\u6B63\u786E\u7B54\u6848\n- \u8BBE\u7F6Einactive\u989C\u8272\u4EE5\u53CA\u6B63\u786E\u8D77\u59CB\u989C\u8272"
+  noteType: 0
+  showInBuild: 0
 --- !u!1001 &2089727777962889031
 PrefabInstance:
   m_ObjectHideFlags: 0

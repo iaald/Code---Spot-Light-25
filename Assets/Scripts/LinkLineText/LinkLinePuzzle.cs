@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public partial class LinkLinePuzzle : MonoBehaviour
 {
+    public Camera eventCamera;
     [Header("Sprites")]
     public Sprite squareSprite;    // 未涂色
     public Sprite arrowSprite;     // 线体内部箭头
@@ -256,6 +257,8 @@ public partial class LinkLinePuzzle : MonoBehaviour
         }
 
         currentLine = null;
+        // Check if is solved
+        CheckPuzzle();
     }
 
     // —— 激活/清理 与 “首次上色序列” —— //
@@ -459,7 +462,7 @@ public partial class LinkLinePuzzle : MonoBehaviour
         foreach (var kv in pos2Block)
         {
             var rt = kv.Value.Rect;
-            if (RectTransformUtility.RectangleContainsScreenPoint(rt, mousePos, Camera.main))
+            if (RectTransformUtility.RectangleContainsScreenPoint(rt, mousePos, eventCamera))
                 return kv.Key;
         }
         return new(-1, -1);
@@ -476,10 +479,10 @@ public partial class LinkLinePuzzle : MonoBehaviour
     [ContextMenu("PbL")]
     public void PrintByLine()
     {
-        foreach (var item in this.committedLines)
+        var t = GetAllResults();
+        foreach (var t2 in t)
         {
-            var t = GetSequenceFromCommittedLineStart(item.lineId);
-            Debug.Log(string.Join(", ", t));
+            Debug.Log(t2);
         }
     }
 }
