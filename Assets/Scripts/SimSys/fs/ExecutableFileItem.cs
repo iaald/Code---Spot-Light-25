@@ -128,14 +128,9 @@ public class ExecutableFileItem : MonoBehaviour
             if (this.simFile is FileSave fs)
             {
                 // 写入在这里
-                if (UnityEditor.PrefabUtility.IsPartOfPrefabInstance(gameObject))
-                {
-                    fs.PrefabName = UnityEditor.PrefabUtility.GetCorrespondingObjectFromOriginalSource(gameObject).name;
-                }
-                else
-                {
-                    fs.PrefabName = name;
-                }
+
+                fs.PrefabName = name;
+
                 fs.Pos = transform.position;
 
                 // Here FsPath should already be the unique one
