@@ -22,6 +22,10 @@ public class AnimationChangeControl : MonoBehaviour
             {
                 AnimationChangeTo("Angry",1.5f);
             }
+            if (testparameter == 3)
+            {
+                AnimationChangeTo("Drag",0.1f);
+            }
         }
     }
     void AnimationChangeTo(string animationName,float crossFadeTime=0.15f)
