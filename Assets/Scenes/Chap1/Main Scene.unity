@@ -2165,6 +2165,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2678621295639115348, guid: bbfd8ba1937976f47909e6152c260a7c, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 5109627312777562499, guid: bbfd8ba1937976f47909e6152c260a7c, type: 3}
       propertyPath: m_Name
       value: Canvas&Cams
@@ -2217,9 +2221,17 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6387455703209370439, guid: bbfd8ba1937976f47909e6152c260a7c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7326845201568718287, guid: bbfd8ba1937976f47909e6152c260a7c, type: 3}
       propertyPath: m_TagString
       value: MainCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7569771130230495174, guid: bbfd8ba1937976f47909e6152c260a7c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7569771130230495174, guid: bbfd8ba1937976f47909e6152c260a7c, type: 3}
       propertyPath: m_IsActive
@@ -2232,6 +2244,14 @@ PrefabInstance:
     - target: {fileID: 8115739772475928410, guid: bbfd8ba1937976f47909e6152c260a7c, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540513653050099903, guid: bbfd8ba1937976f47909e6152c260a7c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8898742757667290342, guid: bbfd8ba1937976f47909e6152c260a7c, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
