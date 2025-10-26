@@ -28,13 +28,14 @@ namespace DataSystem
             throw new System.NotImplementedException();
         }
 
-        public string username = "";
-        public static string Username => Instance.username;
+        private string username = "";
+        protected static string Username => Instance.username;
         public static void SetUsername(string username)
         {
             Instance.username = username;
             Instance.Serialize();
         }
+        public static string GetUsername() => Instance.username;
     }
 
     public partial class GameProgressData
@@ -54,6 +55,5 @@ namespace DataSystem
         }
 
         [JsonIgnore] public bool IsNewGame => !System.IO.File.Exists(Path);
-        public string userName = "";
     }
 }
