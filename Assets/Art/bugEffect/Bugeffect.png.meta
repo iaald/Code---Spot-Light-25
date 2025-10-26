@@ -1,37 +1,10 @@
 fileFormatVersion: 2
-guid: eb7933ace87f7f0469834cf3c94132e9
+guid: a63293fe6a537254bba6e2a36eb426fc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 488036385468508074
-    second: bottomIcons_0
-  - first:
-      213: 92451184086411384
-    second: bottomIcons_1
-  - first:
-      213: -1740926115534860648
-    second: bottomIcons_2
-  - first:
-      213: 2058608664116198379
-    second: bottomIcons_3
-  - first:
-      213: 3649021628514476512
-    second: bottomIcons_4
-  - first:
-      213: 2226562606387984603
-    second: bottomIcons_5
-  - first:
-      213: 5141776658778249862
-    second: bottomIcons_6
-  - first:
-      213: -4811365896976361866
-    second: bottomIcons_7
-  - first:
-      213: -8175218541318222252
-    second: bottomIcons_8
-  - first:
-      213: -5809320464211155578
-    second: bottomIcons_9
+      213: -8938438034850985244
+    second: Bugeffect_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -140,7 +113,73 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bottomIcons_0
+      name: Bugeffect_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4eacdd517f944f380800000000000000
+      internalID: -8938438034850985244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bugeffect_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2101a09e449db9c45a68ce60ea60b5e5
+      internalID: -969078279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bugeffect_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a063a199c6b2034c94a252ba8c486dd
+      internalID: 1642140026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bugeffect_3
       rect:
         serializedVersion: 2
         x: 0
@@ -153,16 +192,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aa7e051c18ad5c600800000000000000
-      internalID: 488036385468508074
+      spriteID: 90fbba84d984ae84582d0515ce7c49e7
+      internalID: -121234683
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bottomIcons_1
+      name: Bugeffect_4
       rect:
         serializedVersion: 2
         x: 32
@@ -175,16 +214,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 878e882bcd3784100800000000000000
-      internalID: 92451184086411384
+      spriteID: 78bf743644a7dc7498778c7985e9bdba
+      internalID: -654863990
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bottomIcons_2
+      name: Bugeffect_5
       rect:
         serializedVersion: 2
         x: 64
@@ -197,164 +236,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 89e0857fbecf6d7e0800000000000000
-      internalID: -1740926115534860648
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bottomIcons_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bebff2c4ca5a19c10800000000000000
-      internalID: 2058608664116198379
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bottomIcons_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0e1a25976dde3a230800000000000000
-      internalID: 3649021628514476512
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bottomIcons_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bd87ce7c4e656ee10800000000000000
-      internalID: 2226562606387984603
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bottomIcons_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 68a5fdcf0a24b5740800000000000000
-      internalID: 5141776658778249862
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bottomIcons_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6769b4a55389a3db0800000000000000
-      internalID: -4811365896976361866
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bottomIcons_8
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 45e4a830d0acb8e80800000000000000
-      internalID: -8175218541318222252
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bottomIcons_9
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 685694021d5216fa0800000000000000
-      internalID: -5809320464211155578
+      spriteID: 59a1651bf3e52c643a1fb1a545b0b157
+      internalID: 402086309
       vertices: []
       indices: 
       edges: []
@@ -363,7 +248,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5b0884a5747e84447ba7d6ad57d83838
+    spriteID: c6ae119cc85a4ad45a2e5ae221aa35e0
     internalID: 0
     vertices: []
     indices: 
@@ -373,18 +258,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":2.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      bottomIcons_0: 488036385468508074
-      bottomIcons_1: 92451184086411384
-      bottomIcons_2: -1740926115534860648
-      bottomIcons_3: 2058608664116198379
-      bottomIcons_4: 3649021628514476512
-      bottomIcons_5: 2226562606387984603
-      bottomIcons_6: 5141776658778249862
-      bottomIcons_7: -4811365896976361866
-      bottomIcons_8: -8175218541318222252
-      bottomIcons_9: -5809320464211155578
+      Bugeffect_0: -8938438034850985244
+      Bugeffect_1: -969078279
+      Bugeffect_2: 1642140026
+      Bugeffect_3: -121234683
+      Bugeffect_4: -654863990
+      Bugeffect_5: 402086309
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

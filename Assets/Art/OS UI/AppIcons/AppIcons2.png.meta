@@ -1,37 +1,25 @@
 fileFormatVersion: 2
-guid: eb7933ace87f7f0469834cf3c94132e9
+guid: aea5239b44b871e46bf4500b64711077
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 488036385468508074
-    second: bottomIcons_0
+      213: 1073181254347734980
+    second: AppIcons2_0
   - first:
-      213: 92451184086411384
-    second: bottomIcons_1
+      213: -4600012039921560642
+    second: AppIcons2_1
   - first:
-      213: -1740926115534860648
-    second: bottomIcons_2
+      213: -5725425174225202807
+    second: AppIcons2_2
   - first:
-      213: 2058608664116198379
-    second: bottomIcons_3
+      213: -8884228842496946734
+    second: AppIcons2_3
   - first:
-      213: 3649021628514476512
-    second: bottomIcons_4
+      213: 4188910864826750033
+    second: AppIcons2_4
   - first:
-      213: 2226562606387984603
-    second: bottomIcons_5
-  - first:
-      213: 5141776658778249862
-    second: bottomIcons_6
-  - first:
-      213: -4811365896976361866
-    second: bottomIcons_7
-  - first:
-      213: -8175218541318222252
-    second: bottomIcons_8
-  - first:
-      213: -5809320464211155578
-    second: bottomIcons_9
+      213: -4541010586958981719
+    second: AppIcons2_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -140,13 +128,79 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bottomIcons_0
+      name: AppIcons2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cf31053aa4b4ee00800000000000000
+      internalID: 1073181254347734980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AppIcons2_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb394fdeb697920c0800000000000000
+      internalID: -4600012039921560642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AppIcons2_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9815a3e73243b80b0800000000000000
+      internalID: -5725425174225202807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AppIcons2_3
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,64 +209,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa7e051c18ad5c600800000000000000
-      internalID: 488036385468508074
+      spriteID: 2dd80bb30f0e4b480800000000000000
+      internalID: -8884228842496946734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bottomIcons_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 878e882bcd3784100800000000000000
-      internalID: 92451184086411384
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bottomIcons_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 89e0857fbecf6d7e0800000000000000
-      internalID: -1740926115534860648
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bottomIcons_3
+      name: AppIcons2_4
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 32
-        height: 32
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,64 +231,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bebff2c4ca5a19c10800000000000000
-      internalID: 2058608664116198379
+      spriteID: 154d5cddc30022a30800000000000000
+      internalID: 4188910864826750033
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bottomIcons_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0e1a25976dde3a230800000000000000
-      internalID: 3649021628514476512
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bottomIcons_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bd87ce7c4e656ee10800000000000000
-      internalID: 2226562606387984603
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bottomIcons_6
+      name: AppIcons2_5
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 32
-        height: 32
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,74 +253,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 68a5fdcf0a24b5740800000000000000
-      internalID: 5141776658778249862
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bottomIcons_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6769b4a55389a3db0800000000000000
-      internalID: -4811365896976361866
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bottomIcons_8
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 45e4a830d0acb8e80800000000000000
-      internalID: -8175218541318222252
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bottomIcons_9
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 685694021d5216fa0800000000000000
-      internalID: -5809320464211155578
+      spriteID: 9a595033ee61bf0c0800000000000000
+      internalID: -4541010586958981719
       vertices: []
       indices: 
       edges: []
@@ -363,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5b0884a5747e84447ba7d6ad57d83838
+    spriteID: c429cc70ecd0b53469f67cdb3cb0bddb
     internalID: 0
     vertices: []
     indices: 
@@ -373,18 +273,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":96.0,"y":96.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      bottomIcons_0: 488036385468508074
-      bottomIcons_1: 92451184086411384
-      bottomIcons_2: -1740926115534860648
-      bottomIcons_3: 2058608664116198379
-      bottomIcons_4: 3649021628514476512
-      bottomIcons_5: 2226562606387984603
-      bottomIcons_6: 5141776658778249862
-      bottomIcons_7: -4811365896976361866
-      bottomIcons_8: -8175218541318222252
-      bottomIcons_9: -5809320464211155578
+      AppIcons2_0: 1073181254347734980
+      AppIcons2_1: -4600012039921560642
+      AppIcons2_2: -5725425174225202807
+      AppIcons2_3: -8884228842496946734
+      AppIcons2_4: 4188910864826750033
+      AppIcons2_5: -4541010586958981719
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
