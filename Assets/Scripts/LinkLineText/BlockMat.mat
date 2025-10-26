@@ -69,7 +69,7 @@ Material:
     - _EnableExternalAlpha: 0
     - _ZWrite: 0
     - _edge_width: 0.2
-    - _f: 0
+    - _f: -1
     m_Colors:
     - _Color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

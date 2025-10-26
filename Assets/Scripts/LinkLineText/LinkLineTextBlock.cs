@@ -16,6 +16,7 @@ public partial class LinkLineTextBlock : MonoBehaviour
     private RectTransform rectTransform;
     public RectTransform Rect => rectTransform;
 
+    public static Material PublicMat { get; private set; }
     // 运行时克隆材质的引用（仅当本块需要独立/分组动画时才会生成）
     private Material _runtimeMat;
 
@@ -28,6 +29,11 @@ public partial class LinkLineTextBlock : MonoBehaviour
 
         var grid = puzzle.IndexToGrid(transform.GetSiblingIndex());
         puzzle.RegisterBlock(this, grid.x, grid.y);
+
+        if (PublicMat == null)
+        {
+            PublicMat = this.image.material;
+        }
     }
 
     void OnDisable()
@@ -67,7 +73,7 @@ public partial class LinkLineTextBlock : MonoBehaviour
         }
     }
 
-    // === 新增：获取/克隆运行时材质（会赋到 image.material）===
+    // === 获取/克隆运行时材质（会赋到 image.material）===
     public Material GetClonedRuntimeMaterial()
     {
         if (image == null) return null;
@@ -130,7 +136,7 @@ public partial class LinkLineTextBlock : MonoBehaviour
     }
 
     // === 回收当前块的运行时材质 ===
-    private void ReleaseRuntimeMaterialIfAny()
+    public void ReleaseRuntimeMaterialIfAny()
     {
         if (_runtimeMat != null)
         {
@@ -138,9 +144,6 @@ public partial class LinkLineTextBlock : MonoBehaviour
             if (_runtimeMat.HasProperty("_f")) _runtimeMat.SetFloat("_f", 0f);
             LinkLineTextBlock_MaterialPool.Release(_runtimeMat);
             _runtimeMat = null;
-
-            // 退回到默认（可选）
-            if (image != null) image.material = null;
         }
     }
 }

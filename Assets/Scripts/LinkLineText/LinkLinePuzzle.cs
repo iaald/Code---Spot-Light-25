@@ -485,4 +485,24 @@ public partial class LinkLinePuzzle : MonoBehaviour
             Debug.Log(t2);
         }
     }
+
+    [ContextMenu("ReserAll")]
+    public void ResetAll()
+    {
+        var ids = from t_line in committedLines
+                  select t_line.lineId;
+        foreach (var id in ids.ToArray())
+        {
+            var path = from t_line in committedLines where t_line.lineId == id select t_line.path;
+            var pathPos = path.First().ToList();
+            var headBlk = pos2Block[pathPos.First()];
+            for (int i = 0; i < pathPos.Count; i++)
+            {
+                pos2Block[pathPos[i]].image.material = LinkLineTextBlock.PublicMat;
+            }
+            headBlk.ReleaseRuntimeMaterialIfAny(); // Danger for duplicate release
+            DeleteCommittedLine(id);
+        }
+        correctCnt = 0; // 重置答题数
+    }
 }
