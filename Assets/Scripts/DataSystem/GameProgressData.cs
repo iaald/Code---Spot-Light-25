@@ -27,6 +27,14 @@ namespace DataSystem
         {
             throw new System.NotImplementedException();
         }
+
+        public string username = "";
+        public static string Username => Instance.username;
+        public static void SetUsername(string username)
+        {
+            Instance.username = username;
+            Instance.Serialize();
+        }
     }
 
     public partial class GameProgressData
