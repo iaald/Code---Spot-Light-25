@@ -57,7 +57,7 @@ public class DestroyChildrenWithParticles : MonoBehaviour
             Destroy(ps.gameObject, particleLifetime);
 
             // 销毁原子物体
-            tmpText.DOFade(0f, 1f);
+            canvasGroup.DOFade(0f, 1f);
             Destroy(child.gameObject);
             Destroy(gameObject, particleLifetime);
         }
