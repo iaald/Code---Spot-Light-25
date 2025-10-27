@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 4421119171280918260}
   - component: {fileID: 7238670012691373686}
   - component: {fileID: 1383579659262187636}
+  - component: {fileID: 2259325967364126743}
   m_Layer: 6
   m_Name: Puzzle Prefab
   m_TagString: Untagged
@@ -339,10 +340,52 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4937150139654935032}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &2259325967364126743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4937150139654935032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70aab50453e4df842bf6b3d15e991c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Progress: 0
+  ProgressCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  TargetCanvasGroup: {fileID: 1383579659262187636}
+  StartAlpha: 0
+  EndAlpha: 1
+  IsInteractable: 1
+  IsBlockRaycasts: 1
 --- !u!1001 &333224326117975752
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1100,7 +1143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1651092261320246921, guid: ce989acd8e86b41439f7afbc2802824d, type: 3}
       propertyPath: OnSolved.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: set_isStatic
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1651092261320246921, guid: ce989acd8e86b41439f7afbc2802824d, type: 3}
       propertyPath: OnSolved.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1987,6 +2030,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 312910312485122339, guid: ce989acd8e86b41439f7afbc2802824d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 290873017734204914}
+    - targetCorrespondingSourceObject: {fileID: 312910312485122339, guid: ce989acd8e86b41439f7afbc2802824d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5347564592028707927}
     - targetCorrespondingSourceObject: {fileID: 4729629983941447072, guid: ce989acd8e86b41439f7afbc2802824d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4904140856795418418}
@@ -2096,10 +2142,52 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3414834245963950898}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &5347564592028707927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3414834245963950898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70aab50453e4df842bf6b3d15e991c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Progress: 0
+  ProgressCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  TargetCanvasGroup: {fileID: 290873017734204914}
+  StartAlpha: 0
+  EndAlpha: 1
+  IsInteractable: 1
+  IsBlockRaycasts: 1
 --- !u!224 &3682287365307245722 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1742434814485757579, guid: ce989acd8e86b41439f7afbc2802824d, type: 3}
