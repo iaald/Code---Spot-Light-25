@@ -104,16 +104,15 @@ public partial class LinkLineTextBlock : MonoBehaviour
     IEnumerator IEFillColor(Material material)
     {
         float counter = 0f;
-        const float maxt = 0.6f;
 
         if (material != null && material.HasProperty("_f"))
             material.SetFloat("_f", 0f);
 
-        while (counter < maxt)
+        while (counter < LinkLinePuzzle.max_anim_time)
         {
             counter += Time.deltaTime;
             if (material != null && material.HasProperty("_f"))
-                material.SetFloat("_f", 2 * counter / maxt);
+                material.SetFloat("_f", 2 * counter / LinkLinePuzzle.max_anim_time);
             yield return null;
         }
         if (material != null && material.HasProperty("_f"))

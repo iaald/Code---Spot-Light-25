@@ -10,6 +10,9 @@ public partial class LinkLinePuzzle : MonoBehaviour
     public List<string> correctAnswers;
     public int requiredNumber = 1;
     private int correctCnt = 0;
+
+    public const float max_anim_time = 0.6f;
+
     public bool CheckLine(int lineId)
     {
         if (OpenAnswer) return true;
@@ -29,10 +32,14 @@ public partial class LinkLinePuzzle : MonoBehaviour
     {
         if (correctCnt == requiredNumber)
         {
-            OnSolved?.Invoke();
+            Invoke(nameof(InvokeOnSolveEvent), max_anim_time);
             return true;
         }
         return false;
+    }
+    private void InvokeOnSolveEvent()
+    {
+        OnSolved?.Invoke();
     }
     public List<string> GetAllResults()
     {
