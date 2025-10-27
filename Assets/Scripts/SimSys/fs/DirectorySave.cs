@@ -36,7 +36,7 @@ public class DirectorySave : ReadableAndWriteableData, ISimFile
 
     public bool Load(out List<string> content)
     {
-        Debug.Log("User Name: " + GameProgressData.Instance.userName);
+        Debug.Log("User Name: " + GameProgressData.GetUsername());
         Debug.Log("This is: " + Name);
         Debug.Log((IsDirectory ? "Dir" : "File") + ": " + FsPath);
         // this.Serialize();
