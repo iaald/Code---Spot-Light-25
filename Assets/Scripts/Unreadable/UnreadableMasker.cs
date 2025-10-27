@@ -7,41 +7,80 @@ using UnityEngine.InputSystem;
 public class UnreadableMasker : UnreadableToLatin, IUnreadableMasker
 {
     private static readonly WaitForSeconds _waitForSeconds1 = new WaitForSeconds(1f);
-    
+
     private string MaskedText = "";
     private string ContentText = "";
-    
+
     // 使用TMP的SetText方法避免字符串分配
     private char[] _filteredCharsBuffer;
     private const char FULL_WIDTH_SPACE = '　';
-    
+
     private TextMeshProUGUI Unreadable;
     private TextMeshProUGUI Content;
     public TextMeshProUGUI Filtered;
     public Canvas canvas;
-    
+
     private int _lastVisibleIndex = -2; // 使用-2作为未初始化状态
     private bool _isDirty = false;
 
     private Material textMaterial;
-    private RectTransform textRectTransform;
+    private Material originalMaterial;
+    private Material materialCopy;
+    private RectTransform g_RectTransform;
+
+    bool isMaterialInstanceCreated;
+
+    float baseAvoidRadius;
+    float baseAvoidStrength;
+    float baseHoleRadius;
+    float baseHoleSoftness;
+
     void Start()
     {
         Unreadable = GetUnreadableTMP();
         Content = GetContentTMP();
 
-        textMaterial = Unreadable.fontSharedMaterial;
-        textRectTransform = Unreadable.GetComponent<RectTransform>();
-        
+        g_RectTransform = canvas.transform.GetComponent<RectTransform>();
+
+
         Refresh();
         UpdateFilteredText(-1); // 初始化为全空格
         SyncTMP();
+
+        string newText = new string('区', Content.text.Length);
+        Content.text = newText;
+
+        if (Unreadable != null)
+        {
+            // 创建材质副本
+            originalMaterial = Unreadable.fontSharedMaterial;
+            materialCopy = new Material(Unreadable.fontMaterial);
+            Unreadable.fontMaterial = materialCopy;
+
+            // 保存原始参数值
+            baseAvoidRadius = materialCopy.GetFloat("_AvoidRadius");
+            baseAvoidStrength = materialCopy.GetFloat("_AvoidStrength");
+            baseHoleRadius = materialCopy.GetFloat("_HoleRadius");
+            baseHoleSoftness = materialCopy.GetFloat("_HoleSoftness");
+
+            isMaterialInstanceCreated = true;
+
+            // 调整参数
+            UpdateShaderParameters();
+        }
+
+        textMaterial = Unreadable.fontSharedMaterial;
     }
-    
+
+    void Oestroy()
+    {
+        CleanupMaterial();
+    }
+
     void Update()
     {
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            textRectTransform,
+            g_RectTransform,
             Mouse.current.position.ReadValue(),
             canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera,
             out Vector2 mousePos
@@ -64,7 +103,7 @@ public class UnreadableMasker : UnreadableToLatin, IUnreadableMasker
             UpdateFilteredText(-1);
             _isDirty = true;
         }
-        
+
         if (_isDirty)
         {
             SyncTMP();
@@ -123,16 +162,59 @@ public class UnreadableMasker : UnreadableToLatin, IUnreadableMasker
         GenerateFullLengthMask();
         MaskedText = GetTextUnreadable();
         ContentText = GetTextContent();
-        
+
         // 初始化字符缓冲区（只分配一次）
         _filteredCharsBuffer = new char[ContentText.Length];
-        
+
         // 设置遮罩文本（初始化时允许GC）
         if (Unreadable != null)
         {
             Unreadable.text = MaskedText;
         }
-        
+
         _lastVisibleIndex = -2;
+    }
+
+
+    void UpdateShaderParameters()
+    {
+        if (materialCopy == null) return;
+
+        Vector3 scale = transform.localScale;
+
+        // 使用不同的scale因子策略
+        float scaleFactor = CalculateScaleFactor(scale);
+
+        materialCopy.SetFloat("_AvoidRadius", baseAvoidRadius * scaleFactor);
+        materialCopy.SetFloat("_AvoidStrength", baseAvoidStrength * scaleFactor);
+        materialCopy.SetFloat("_HoleRadius", baseHoleRadius * scaleFactor);
+        materialCopy.SetFloat("_HoleSoftness", baseHoleSoftness * scaleFactor);
+    }
+
+    float CalculateScaleFactor(Vector3 scale)
+    {
+        // 使用最大值（确保效果足够明显）
+        return Mathf.Max(scale.x, scale.y);
+    }
+
+     void CleanupMaterial()
+    {
+        if (isMaterialInstanceCreated)
+        {
+            // 恢复原始材质
+            if (Unreadable != null && originalMaterial != null)
+            {
+                Unreadable.fontSharedMaterial = originalMaterial;
+            }
+
+            // 销毁材质实例
+            if (materialCopy != null)
+            {
+                DestroyImmediate(materialCopy);
+                materialCopy = null;
+            }
+            isMaterialInstanceCreated = false;
+        }
+        textMaterial = Unreadable.fontSharedMaterial;
     }
 }
