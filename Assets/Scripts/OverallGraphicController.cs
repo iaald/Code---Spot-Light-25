@@ -3,6 +3,12 @@ using UnityEngine;
 public class OverallGraphicController : MonoBehaviour
 {
     public RenderTexture renderTexture;
+
+    private void OnEnable()
+    {
+        ResizeRT(Screen.width, Screen.height);
+    }
+
     [ContextMenu("1920x1080")]
     public void Resize1920()
     {
