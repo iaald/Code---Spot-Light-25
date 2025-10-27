@@ -15,8 +15,12 @@ public partial class LinkLinePuzzle : MonoBehaviour
 
     public bool CheckLine(int lineId)
     {
-        if (OpenAnswer) return true;
-        var str = string.Join("", this.GetSequenceFromCommittedLineStart(lineId));
+        if (OpenAnswer)
+        {
+            correctCnt += 1;
+            return true;
+        }
+            var str = string.Join("", this.GetSequenceFromCommittedLineStart(lineId));
         if (str.Equals("") || correctAnswers.Contains(str))
         {
             correctCnt += 1;
