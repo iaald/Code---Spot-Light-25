@@ -4,20 +4,23 @@ using TMPro;
 using QFramework;
 using UnityEngine;
 using UnityEngine.UI;
+using Narration;
 
 [RequireComponent(typeof(RectTransform))]
 public class WindowPetDialogueBox : MonoBehaviour
 {
     public TextMeshProUGUI textMeshProUGUI;
     public float textSpeed = 0.05f; // 每个字符出现的间隔时间
-    public string currenContent;
+    [SerializeField] private string currentContent;
     private RectTransform rectTransform;
     private Coroutine typingCoroutine;
+
+    public bool IsTypingComplete => typingCoroutine == null;
 
     // 调用此函数开始打印文字
     public void ShowText(string fullText)
     {
-        currenContent = fullText;
+        currentContent = fullText;
         // 如果上一次的打印还在进行，先停止
         if (typingCoroutine != null)
         {
@@ -35,6 +38,8 @@ public class WindowPetDialogueBox : MonoBehaviour
         foreach (char c in textToType)
         {
             textMeshProUGUI.text += c;   // 逐字添加
+            textMeshProUGUI.rectTransform.sizeDelta = new Vector2(textMeshProUGUI.rectTransform.sizeDelta.x, textMeshProUGUI.preferredHeight);
+            
             yield return new WaitForSeconds(textSpeed);
         }
 
@@ -56,10 +61,10 @@ public class WindowPetDialogueBox : MonoBehaviour
     // 跳过打印过程
     public void SkipTyping()
     {
-        if (currenContent.IsNullOrEmpty()) return;
+        if (currentContent.IsNullOrEmpty()) return;
         if (typingCoroutine != null)
         {
-            ShowFullTextInstant(currenContent);
+            ShowFullTextInstant(currentContent);
             LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
             return;
         }
