@@ -20,4 +20,4 @@ MonoBehaviour:
     list: []
   postAccomplishedMissionIds: []
   state:
-    sampleState: 
+    totalTime: 0
