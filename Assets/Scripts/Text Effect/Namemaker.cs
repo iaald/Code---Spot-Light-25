@@ -26,14 +26,14 @@ public class Namemaker : MonoBehaviour
             if (t2.Length > 2)
             {
                 string lastTwo = t2.Substring(t2.Length - 2);
-                string message = $"ÕæÊÇÉİ³ŞµÄÃû×Ö°¡£¬Òª²»»¹ÊÇ½Ğ{lastTwo}°É£¿";
+                string message = $"çœŸæ˜¯å¥¢ä¾ˆçš„åå­—å•Šï¼Œè¦ä¸è¿˜æ˜¯å«{lastTwo}å§ï¼Ÿ";
                 hint.text = message;
                 name = lastTwo;
             }
             if(t2.Length==2)
             {
                 name = t2;
-                string message = $"ÄãÈ·¶¨Òª½Ğ¡°{t2}¡±Âğ£¿";
+                string message = $"ä½ ç¡®å®šè¦å«â€œ{t2}â€å—ï¼Ÿ";
                 hint.text = message;
             }
         }
@@ -42,10 +42,11 @@ public class Namemaker : MonoBehaviour
     public void Setname()
     {
         GameProgressData.SetUsername(name);
+        Debug.Log($"{name}, {GameProgressData.GetUsername()}");
     }
     public void Resetmessage()
     {
-        hint.text = "¿ÉÎÒ½ĞÊ²Ã´£¿";
+        hint.text = "å¯æˆ‘å«ä»€ä¹ˆï¼Ÿ";
     }
 
 }
