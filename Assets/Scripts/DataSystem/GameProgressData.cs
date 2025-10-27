@@ -29,7 +29,6 @@ namespace DataSystem
         }
 
         private string username = "";
-        protected static string Username => Instance.username;
         public static void SetUsername(string username)
         {
             Instance.username = username;

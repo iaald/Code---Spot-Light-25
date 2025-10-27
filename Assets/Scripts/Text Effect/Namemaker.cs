@@ -42,7 +42,6 @@ public class Namemaker : MonoBehaviour
     public void Setname()
     {
         GameProgressData.SetUsername(name);
-        Debug.Log($"{name}, {GameProgressData.GetUsername()}");
     }
     public void Resetmessage()
     {
