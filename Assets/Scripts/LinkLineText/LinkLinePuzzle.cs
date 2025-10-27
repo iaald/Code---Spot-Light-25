@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public partial class LinkLinePuzzle : MonoBehaviour
 {
+    public bool freezed;
     public Camera eventCamera;
     [Header("Sprites")]
     public Sprite squareSprite;    // 未涂色
@@ -88,7 +89,13 @@ public partial class LinkLinePuzzle : MonoBehaviour
 
     void Update()
     {
+       
         if (!boardReady) return;
+
+        if (freezed)
+        {
+            return;
+        }
 
         // 定位鼠标所在格
         mouseGrid = FindMouseGrid();
@@ -455,6 +462,7 @@ public partial class LinkLinePuzzle : MonoBehaviour
 
     private Vector2Int FindMouseGrid()
     {
+
         if (Mouse.current == null) return new(-1, -1);
         Vector2 mousePos = Mouse.current.position.ReadValue();
 
@@ -504,5 +512,10 @@ public partial class LinkLinePuzzle : MonoBehaviour
             DeleteCommittedLine(id);
         }
         correctCnt = 0; // 重置答题数
+        freezed = false;
+    }
+    public void FreezedPuzzle()
+    {
+        freezed = true;
     }
 }

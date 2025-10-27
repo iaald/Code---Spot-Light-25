@@ -20,15 +20,19 @@ public class AnimationChangeControl : MonoBehaviour
             }
             if (testparameter == 2)
             {
-                AnimationChangeTo("Angry",1.5f);
+                AnimationChangeTo("Angry",0.1f);
             }
             if (testparameter == 3)
             {
                 AnimationChangeTo("Drag",0.1f);
             }
+            if (testparameter == 4)
+            {
+                AnimationChangeTo("Worry", 0.1f);
+            }
         }
     }
-    void AnimationChangeTo(string animationName,float crossFadeTime=0.15f)
+    public void AnimationChangeTo(string animationName,float crossFadeTime=0.15f)
     {
         if(currentAnimation != animationName) 
         {
