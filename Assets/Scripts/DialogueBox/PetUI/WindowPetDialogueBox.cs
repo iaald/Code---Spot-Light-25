@@ -1,7 +1,10 @@
 using System.Collections;
 using TMPro;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(RectTransform))]
 public class WindowPetDialogueBox : MonoBehaviour
 {
     public TextMeshProUGUI textMeshProUGUI;
@@ -46,11 +49,49 @@ public class WindowPetDialogueBox : MonoBehaviour
         textMeshProUGUI.text = fullText;
     }
 #if UNITY_EDITOR
-    [SerializeField] [TextArea] private string stringTotest;
+    [SerializeField][TextArea] private string stringTotest;
     [ContextMenu("TestPrint")]
     public void TestPrint()
     {
         ShowText(stringTotest);
     }
 #endif
+
+    [HideInInspector] public int dialogueCounter = 0;
+    public TempDialogues tempDialogues;
+
+    private RectTransform rectTransform;
+
+    public void NextDialogue()
+    {
+        if (dialogueCounter == tempDialogues.content.Length - 1)
+        {
+            return;
+        }
+        if (typingCoroutine != null)
+        {
+            ShowFullTextInstant(tempDialogues.content[dialogueCounter]);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
+            return;
+        }
+        ShowText(tempDialogues.content[++dialogueCounter]);
+    }
+    public void LoadAndStartDialogue(string d_name)
+    {
+        dialogueCounter = 0;
+        LoadDialogue(d_name);
+        ShowText(tempDialogues.content[0]);
+    }
+    public void LoadDialogue(string d_name)
+    {
+        var t = Resources.Load<TempDialogues>(d_name);
+        this.tempDialogues = t;
+    }
+    void Start()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        LoadAndStartDialogue("DialoguesData_Test");
+    }
+
+
 }
