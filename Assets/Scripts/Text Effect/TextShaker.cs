@@ -13,7 +13,7 @@ public class TextShaker : MonoBehaviour
 
     void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
+        rectTransform = GetComponentInChildren<TextMeshProUGUI>().rectTransform;
         originalPos = rectTransform.anchoredPosition;
         randomOffset = randomize ? Random.Range(0f, 100f) : 0f;
     }

@@ -16,7 +16,7 @@ public class TextBlinkSwitch : MonoBehaviour
     void Start()
     {
         if (textMeshPro == null)
-            textMeshPro = GetComponent<TextMeshProUGUI>();
+            textMeshPro = GetComponentInChildren<TextMeshProUGUI>();
 
         textMeshPro.text = textA;
         textMeshPro.alpha = 1f;

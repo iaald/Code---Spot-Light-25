@@ -9,13 +9,9 @@ namespace Puzzles
         private TMP_Text text;
         public string TargetString = "";
 
-        private void Awake()
-        {
-            text = GetComponentInChildren<TMP_Text>();
-        }
-
         public void SetString()
         {
+            text = GetComponentInChildren<TMP_Text>();
             text.SetText(TargetString.Replace("{username}", GameProgressData.GetUsername()));
         }
     }
