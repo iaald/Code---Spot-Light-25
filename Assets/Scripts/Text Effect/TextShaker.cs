@@ -1,6 +1,8 @@
 using UnityEngine;
-using TMPro; 
+using TMPro;
+using System;
 
+[Serializable]
 public class TextShaker : MonoBehaviour
 {
     public float amplitude = 5f;   // »Î¶¯·ù¶È
@@ -15,7 +17,7 @@ public class TextShaker : MonoBehaviour
     {
         rectTransform = GetComponentInChildren<TextMeshProUGUI>().rectTransform;
         originalPos = rectTransform.anchoredPosition;
-        randomOffset = randomize ? Random.Range(0f, 100f) : 0f;
+        randomOffset = randomize ? UnityEngine.Random.Range(0f, 100f) : 0f;
     }
 
     void Update()

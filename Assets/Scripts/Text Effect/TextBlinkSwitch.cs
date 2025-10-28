@@ -1,7 +1,9 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System;
 
+[Serializable]
 public class TextBlinkSwitch : MonoBehaviour
 {
     public TextMeshProUGUI textMeshPro;

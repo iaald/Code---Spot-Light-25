@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3482730716975232025}
   - component: {fileID: 1321832395296919847}
+  - component: {fileID: 8292346155234438439}
   m_Layer: 0
   m_Name: TextGrid
   m_TagString: Untagged
@@ -54,6 +55,24 @@ MonoBehaviour:
   Seq: 0
   textMeshProUGUI: {fileID: 1846420170258146400}
   image: {fileID: 2601891857724547358}
+--- !u!114 &8292346155234438439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2763606351204676687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43d72a706ad3c4458d24cf394bce006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  editFromGrid: 0
+  textcolor: {r: 0, g: 0.41021943, b: 1, a: 1}
+  targetShaker: {fileID: 0}
+  targetBlinkSwitch: {fileID: 0}
+  blinkOn: 0
+  shakerOn: 0
 --- !u!1 &3173811226886645362
 GameObject:
   m_ObjectHideFlags: 0
