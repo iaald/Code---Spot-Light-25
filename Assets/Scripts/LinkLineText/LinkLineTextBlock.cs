@@ -38,6 +38,7 @@ public partial class LinkLineTextBlock : MonoBehaviour
 
     void OnDisable()
     {
+        image.color = temptColor;
         ReleaseRuntimeMaterialIfAny();
     }
 
@@ -48,10 +49,12 @@ public partial class LinkLineTextBlock : MonoBehaviour
 
     // ====== 颜色由管理器统一控制 ======
     Coroutine coroutine;
+    Color temptColor;
     public void SetColor(Color c)
     {
         if (image != null)
         {
+            temptColor = c;
             if (coroutine != null)
             {
                 StopCoroutine(coroutine);
