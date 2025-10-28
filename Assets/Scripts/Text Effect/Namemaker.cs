@@ -1,23 +1,18 @@
 using DataSystem;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-
 public class Namemaker : MonoBehaviour
 {
     public TextMeshProUGUI hint;
     public LinkLinePuzzle llp;
-    public string name;
+    public string username;
     void Start()
     {
         llp = GetComponent<LinkLinePuzzle>(); 
-
     }
 
-    // Update is called once per frame
     public void CheckName()
     {
-        //Debug.Log("fuuuuuuu");
         var t = llp.GetAllResults();
         foreach (var t2 in t)
         {
@@ -28,11 +23,11 @@ public class Namemaker : MonoBehaviour
                 string lastTwo = t2.Substring(t2.Length - 2);
                 string message = $"真是奢侈的名字啊，要不还是叫{lastTwo}吧？";
                 hint.text = message;
-                name = lastTwo;
+                username = lastTwo;
             }
             if(t2.Length==2)
             {
-                name = t2;
+                username = t2;
                 string message = $"你确定要叫“{t2}”吗？";
                 hint.text = message;
             }
@@ -41,7 +36,7 @@ public class Namemaker : MonoBehaviour
     }
     public void Setname()
     {
-        GameProgressData.SetUsername(name);
+        GameProgressData.SetUsername(username);
     }
     public void Resetmessage()
     {
