@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class AudioPlayHelper : MonoBehaviour
 {
-    public void PlayFootStep_Helper()
+    public AudioClip audioClip;
+    public void PH()
     {
-        AudioMng.Instance.PlayFootStep();
+        AudioMng.Instance.PlayHigherOneshot(audioClip);
+    }
+    public void PL()
+    {
+        AudioMng.Instance.PlayLowerOneshot(audioClip);
+    }
+    public void PC()
+    {
+        AudioMng.Instance.PlayCurrentOneshot(audioClip);
     }
 }

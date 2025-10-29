@@ -18,7 +18,7 @@ public class SceneMng : MonoSingleton<SceneMng>
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        SwitchSceneImmediately("Installer Scene");
+        SwitchSceneImmediately("PuzzleTestScene");
     }
 
     public bool SwitchScene(string sceneName)

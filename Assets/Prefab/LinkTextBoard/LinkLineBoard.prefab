@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6686219846188033460}
   - component: {fileID: 2592716554882114706}
   - component: {fileID: 8483290870868686456}
+  - component: {fileID: 3522494088080639719}
   m_Layer: 0
   m_Name: LinkLineBoard
   m_TagString: Untagged
@@ -75,7 +76,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f54ce091ca2fe48a9c87588878d540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freezed: 0
   eventCamera: {fileID: 0}
+  occluderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  enableUIOccluder: 1
+  debugRaycast: 0
+  debugLogInterval: 0.2
   squareSprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
   arrowSprite: {fileID: -4346244404228752641, guid: 929e1ebaf10208f4383971dd7878940b, type: 3}
   endpointSprite: {fileID: -7242902979925661857, guid: 0dd6774dda1aca24098c97dfd0f79e7a, type: 3}
@@ -83,7 +91,12 @@ MonoBehaviour:
   cols: 4
   inactiveColor: {r: 0, g: 0, b: 0, a: 1}
   activeColor: {r: 0, g: 0.6156863, b: 0, a: 1}
+  OpenAnswer: 0
   correctAnswers: []
+  requiredNumber: 1
+  OnSolved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8483290870868686456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +117,19 @@ MonoBehaviour:
     \u6DFB\u52A0\u6B63\u786E\u7B54\u6848\n- \u8BBE\u7F6Einactive\u989C\u8272\u4EE5\u53CA\u6B63\u786E\u8D77\u59CB\u989C\u8272"
   noteType: 0
   showInBuild: 0
+--- !u!114 &3522494088080639719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3550340727669871416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d514158c8e28d4ca7aaa280ead0ac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: b62fa95dc2d1c7b4aa12ebfeb4c870b6, type: 3}
 --- !u!1001 &2089727777962889031
 PrefabInstance:
   m_ObjectHideFlags: 0

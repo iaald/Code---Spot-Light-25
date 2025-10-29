@@ -1,25 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
-public class AudioMng : MonoBehaviour
+public partial class AudioMng : MonoBehaviour
 {
     public static AudioMng Instance { get; private set; }
+
+    [Header("BGM")]
     public AudioClip bgm1;
     public AudioClip bgm2;
     public AudioSource audioSource;
+
+    [Header("SFX (oneshot & pitch random)")]
     public AudioSource sfxSource;
+
     void Awake()
     {
         Instance = this;
+        InitializePools();
     }
+
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        footstep = Resources.Load<AudioClip>("footstep");
-        footstep.LoadAudioData();
     }
+
     public void PlayMusic(string name, float volume = 1)
     {
         audioSource.volume = volume;
@@ -34,36 +39,28 @@ public class AudioMng : MonoBehaviour
             audioSource.Play();
         }
     }
+
     public void PlaySound(string name, bool useRandom = false)
     {
         AudioClip audioClip = Resources.Load<AudioClip>(name);
+        if (audioClip == null) return;
+
         audioClip.LoadAudioData();
+
         if (useRandom)
         {
             sfxSource.pitch = pitchOffsets[idx++];
-            if (idx == pitchOffsets.Length)
-            {
-                idx = 0;
-            }
+            if (idx == pitchOffsets.Length) idx = 0;
         }
         else
         {
-            sfxSource.pitch = 1;
+            sfxSource.pitch = 1f;
         }
         sfxSource.PlayOneShot(audioClip);
     }
-    private AudioClip footstep;
+
     private static float[] pitchOffsets = new float[] {
         1.2f, 1.8f, 1.5f, 0.8f, 1.1f, 0.9f, 1.1f, 1f, 1.2f, 0.9f
     };
     int idx = 0;
-    public void PlayFootStep()
-    {
-        sfxSource.pitch = pitchOffsets[idx++];
-        if (idx == pitchOffsets.Length)
-        {
-            idx = 0;
-        }
-        sfxSource.PlayOneShot(footstep);
-    }
 }

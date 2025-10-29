@@ -73,6 +73,10 @@ public partial class LinkLinePuzzle : MonoBehaviour
     };
     private const byte N = 1, E = 2, S = 4, W = 8;
 
+
+    private AudioPlayHelper audioPlayHelper;
+
+
     void Awake()
     {
         expectedBlocks = transform.childCount;
@@ -83,6 +87,7 @@ public partial class LinkLinePuzzle : MonoBehaviour
 
     IEnumerator Start()
     {
+        audioPlayHelper = GetComponent<AudioPlayHelper>();
         yield return new WaitUntil(() => registeredBlocks >= expectedBlocks);
         boardReady = true;
         foreach (var kv in pos2Block)
@@ -182,6 +187,7 @@ public partial class LinkLinePuzzle : MonoBehaviour
         if (mark == line.lineId || line.path.Contains(target))
         {
             BacktrackTo(line, target);
+            audioPlayHelper.PL();
             return;
         }
 
@@ -205,6 +211,7 @@ public partial class LinkLinePuzzle : MonoBehaviour
 
             ActivateCell(target);
             SetEndpointAt(target);
+            audioPlayHelper.PH();
             return;
         }
 
