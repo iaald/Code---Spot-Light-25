@@ -5,7 +5,6 @@ using URPGlitch;
 
 namespace Opening
 {
-    [ExecuteInEditMode]
     public class OpeningSceneVolumeController : MonoBehaviour
     {
         public Volume volume;
@@ -100,6 +99,11 @@ namespace Opening
             {
                 digitalGlitchVolume.intensity.overrideState = true;
             }
+        }
+
+        private void Start()
+        {
+            AudioMng.Instance.PlayMusicWithFade("undersea_white_noise", 0f, true, 1f, 1f);
         }
 
         private void Update()
@@ -206,6 +210,34 @@ namespace Opening
             centerAnimStartTime = Time.time;
         }
 
+        private AudioSource whiteNoiseAudioSource;
+        private AudioSource tinnitusAudioSource;
+        public void PlayWhiteNoise()
+        {
+            whiteNoiseAudioSource = AudioMng.Instance.PlaySoundWithFade("white_noise", 0f, true, 1f, 0.5f);
+        }
+        public void StopWhiteNoise()
+        {
+            if (whiteNoiseAudioSource != null)
+            {
+                AudioMng.Instance.StopSound(whiteNoiseAudioSource);
+            }
+            whiteNoiseAudioSource = null;
+        }
+
+        public void PlayTinnitus()
+        {
+            tinnitusAudioSource = AudioMng.Instance.PlaySound("tinnitus");
+        }
+        public void StopTinnitus()
+        {
+            if (tinnitusAudioSource != null)
+            {
+                AudioMng.Instance.StopSound(tinnitusAudioSource);
+            }
+            tinnitusAudioSource = null;
+        }
+
         /// <summary>
         /// 开始 Glitch 效果动画，平滑过渡到 Inspector 中设置的目标值
         /// 可通过 UnityEvent 调用（无参数）
@@ -242,6 +274,7 @@ namespace Opening
         
         public void SwitchToScene(string sceneName)
         {
+            AudioMng.Instance.StopMusic();
             SceneMng.Instance.SwitchScene(sceneName);
         }
     }

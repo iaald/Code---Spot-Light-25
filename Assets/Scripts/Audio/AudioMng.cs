@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using QFramework;
 
 public partial class AudioMng : MonoBehaviour
 {
     public static AudioMng Instance { get; private set; }
 
-    [Header("BGM")]
-    public AudioClip bgm1;
-    public AudioClip bgm2;
     public AudioSource audioSource;
 
     [Header("SFX (oneshot & pitch random)")]
-    public AudioSource sfxSource;
+    public GameObject SFXSourceTemplate;
+    public SimpleObjectPool<GameObject> SFXSourcePool = new SimpleObjectPool<GameObject>(() => {
+        var obj = Instantiate(Instance.SFXSourceTemplate, Instance.transform);
+        var audioSource = obj.GetComponent<AudioSource>();
+        Instance.SFXSources.Add(audioSource);
+        return obj;
+    }, obj => {
+        obj.SetActive(false);
+    });
+    public List<AudioSource> SFXSources = new List<AudioSource>();
 
     public int puzzleSolveLevel = 1;
     public string puzzleSolveSFXContent;
@@ -52,38 +59,95 @@ public partial class AudioMng : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void PlayMusic(string name, float volume = 1)
-    {
-        audioSource.volume = volume;
-        if (name == "1")
-        {
-            audioSource.clip = bgm1;
-            audioSource.Play();
-        }
-        else
-        {
-            audioSource.clip = bgm2;
-            audioSource.Play();
-        }
-    }
-
-    public void PlaySound(string name, bool useRandom = false)
+    public void PlayMusic(string name, float volume = 1, bool loop = true)
     {
         AudioClip audioClip = Resources.Load<AudioClip>(name);
         if (audioClip == null) return;
 
         audioClip.LoadAudioData();
 
+        audioSource.volume = volume;
+        audioSource.loop = loop;
+        audioSource.clip = audioClip;
+
+        audioSource.Play();
+    }
+
+    public void PlayMusicWithFade(string name, float startVolume = 1, bool loop = true, float fadeDuration = 1f, float targetVolume = 0f)
+    {
+        AudioClip audioClip = Resources.Load<AudioClip>(name);
+        if (audioClip == null) return;
+
+        audioClip.LoadAudioData();
+
+        audioSource.volume = startVolume;
+        audioSource.loop = loop;
+        audioSource.clip = audioClip;
+        audioSource.Play();
+
+        StartCoroutine(IFadeAudioSource(audioSource, fadeDuration, targetVolume));
+    }
+    private IEnumerator IFadeAudioSource(AudioSource audioSource, float fadeDuration, float targetVolume)
+    {
+        float startVolume = audioSource.volume;
+        float time = 0;
+        while (time < fadeDuration)
+        {
+            audioSource.volume = Mathf.Lerp(startVolume, targetVolume, time / fadeDuration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        audioSource.volume = targetVolume;
+    }
+
+    public void StopMusic()
+    {
+        audioSource.Stop();
+    }
+
+    public AudioSource PlaySound(string name, bool useRandom = false)
+    {
+        AudioClip audioClip = Resources.Load<AudioClip>(name);
+        if (audioClip == null) return null;
+
+        audioClip.LoadAudioData();
+        var audioSource = SFXSourcePool.Allocate().GetComponent<AudioSource>();
+
         if (useRandom)
         {
-            sfxSource.pitch = pitchOffsets[idx++];
+            audioSource.pitch = pitchOffsets[idx++];
             if (idx == pitchOffsets.Length) idx = 0;
         }
         else
         {
-            sfxSource.pitch = 1f;
+            audioSource.pitch = 1f;
         }
-        sfxSource.PlayOneShot(audioClip);
+        audioSource.PlayOneShot(audioClip);
+
+        return audioSource;
+    }
+
+    public AudioSource PlaySoundWithFade(string name, float startVolume = 1, bool loop = false, float fadeDuration = 1f, float targetVolume = 0f)
+    {
+        AudioClip audioClip = Resources.Load<AudioClip>(name);
+        if (audioClip == null) return null;
+
+        audioClip.LoadAudioData();
+        var audioSource = SFXSourcePool.Allocate().GetComponent<AudioSource>();
+
+        audioSource.volume = startVolume;
+        audioSource.loop = loop;
+        audioSource.clip = audioClip;
+        audioSource.Play();
+        StartCoroutine(IFadeAudioSource(audioSource, fadeDuration, targetVolume));
+
+        return audioSource;
+    }
+
+    public void StopSound(AudioSource audioSource)
+    {
+        audioSource.Stop();
+        SFXSourcePool.Recycle(audioSource.gameObject);
     }
 
     private static float[] pitchOffsets = new float[] {

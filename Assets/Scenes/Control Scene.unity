@@ -375,6 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a59826c678681479b89f5db72f3e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InitialSceneName: Opening Scene
   fadeInDuration: 0.25
   fadeOutDuration: 0.25
   fadeCurve:
@@ -431,8 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f62338c269a6047a0c7b33000f5006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialMissions:
-  - {fileID: 11400000, guid: f3577e12627b0a045a33872a1a0cb058, type: 2}
+  initialMissions: []
   currentMissions: []
   autoLoadOnStart: 1
 --- !u!4 &1070607541
@@ -450,6 +450,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1101701991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3857228352613927472, guid: c112865a6648c1242bef34f6608e3433, type: 3}
+  m_PrefabInstance: {fileID: 7102904499854783685}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2026445547
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,6 +647,10 @@ PrefabInstance:
       propertyPath: gaussSigmaOct
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7377971959396990597, guid: c112865a6648c1242bef34f6608e3433, type: 3}
+      propertyPath: SFXSourceTemplate
+      value: 
+      objectReference: {fileID: 1101701991}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
