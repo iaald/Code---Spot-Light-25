@@ -124,14 +124,14 @@ public partial class LinkLineTextBlock : MonoBehaviour
 
     IEnumerator IEChangeColor(Color color)
     {
-        Vector3 start = new(image.color.r, image.color.g, image.color.b);
-        Vector3 end = new(color.r, color.g, color.b);
+        Vector4 start = new(image.color.r, image.color.g, image.color.b, image.color.a);
+        Vector4 end = new(color.r, color.g, color.b, color.a);
         float counter = 0;
         while (counter < 1f)
         {
             counter += Time.deltaTime;
-            start = Vector3.Lerp(start, end, 0.05f);
-            image.color = new Color(start.x, start.y, start.z);
+            start = Vector4.Lerp(start, end, 0.05f);
+            image.color = new Color(start.x, start.y, start.z, start.w);
             yield return null;
         }
         image.color = color;
