@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public partial class LinkLinePuzzle : MonoBehaviour
 {
     public bool freezed;
     public Camera eventCamera;
+    public LayerMask occluderMask = ~0; // 射线遮挡层（默认命中所有物理层）
+    public bool enableUIOccluder = true; // 是否考虑 UI 作为遮挡体
+    public bool debugRaycast = false;     // 调试信息开关
+    public float debugLogInterval = 0.2f; // 调试日志节流
+    private float _dbgNextLogTime = 0f;
     [Header("Sprites")]
     public Sprite squareSprite;    // 未涂色
     public Sprite arrowSprite;     // 线体内部箭头
@@ -462,16 +468,87 @@ public partial class LinkLinePuzzle : MonoBehaviour
 
     private Vector2Int FindMouseGrid()
     {
-
         if (Mouse.current == null) return new(-1, -1);
         Vector2 mousePos = Mouse.current.position.ReadValue();
 
-        // UI/GridLayout：逐块命中最稳
+        // 统一使用同一相机参与 UI 命中和世界射线
+        var cam = eventCamera != null ? eventCamera : Camera.main;
+
+        // UI 遮挡优先：若顶层 UI 命中且非本 Grid 的块，则直接视为被遮挡
+        if (enableUIOccluder && EventSystem.current != null)
+        {
+            var ped = new PointerEventData(EventSystem.current) { position = mousePos };
+            var uiHits = new List<RaycastResult>(8);
+            EventSystem.current.RaycastAll(ped, uiHits);
+            if (uiHits.Count > 0)
+            {
+                var top = uiHits[0];
+                var topBlock = top.gameObject.GetComponentInParent<LinkLineTextBlock>();
+                if (topBlock == null)
+                {
+                    if (debugRaycast && Time.unscaledTime >= _dbgNextLogTime)
+                    {
+                        Debug.Log($"[LinkLinePuzzle] UI 顶层遮挡: {top.gameObject.name} @dist={top.distance:F3}");
+                        _dbgNextLogTime = Time.unscaledTime + debugLogInterval;
+                    }
+                    return new(-1, -1);
+                }
+            }
+        }
+
+        // 无可用相机（如 Overlay Canvas 且未指定 eventCamera）时回退老逻辑
+        if (cam == null)
+        {
+            foreach (var kv in pos2Block)
+            {
+                var rt0 = kv.Value.Rect;
+                if (RectTransformUtility.RectangleContainsScreenPoint(rt0, mousePos, cam))
+                    return kv.Key;
+            }
+            return new(-1, -1);
+        }
+
+        // 物理遮挡：从相机发射射线，检测最近命中体
+        var ray = cam.ScreenPointToRay(mousePos);
+        float firstHitDistance = float.PositiveInfinity;
+        RaycastHit firstHit;
+        bool hasHit = Physics.Raycast(ray, out firstHit, Mathf.Infinity, occluderMask, QueryTriggerInteraction.Ignore);
+        if (hasHit)
+        {
+            firstHitDistance = firstHit.distance;
+        }
+        if (debugRaycast)
+        {
+            var len = float.IsInfinity(firstHitDistance) ? 100f : firstHitDistance;
+            Debug.DrawRay(ray.origin, ray.direction * len, hasHit ? Color.red : Color.yellow, 0f);
+            if (hasHit && Time.unscaledTime >= _dbgNextLogTime)
+            {
+                Debug.Log($"[LinkLinePuzzle] 物理首碰: {firstHit.collider.gameObject.name} layer={firstHit.collider.gameObject.layer} dist={firstHitDistance:F3}");
+                _dbgNextLogTime = Time.unscaledTime + debugLogInterval;
+            }
+        }
+
+        // 遍历所有格：先做屏幕矩形命中，再将屏幕点投影到该 RectTransform 的世界平面，
+        // 计算该点沿射线的距离，与物理命中距离比较以判定遮挡
         foreach (var kv in pos2Block)
         {
             var rt = kv.Value.Rect;
-            if (RectTransformUtility.RectangleContainsScreenPoint(rt, mousePos, eventCamera))
-                return kv.Key;
+            if (!RectTransformUtility.RectangleContainsScreenPoint(rt, mousePos, cam))
+                continue;
+
+            if (RectTransformUtility.ScreenPointToWorldPointInRectangle(rt, mousePos, cam, out var worldPoint))
+            {
+                float t = Vector3.Dot(worldPoint - ray.origin, ray.direction);
+                if (t < 0f) continue; // 在相机后方
+
+                bool notOccluded = t <= firstHitDistance - 1e-4f;
+                if (debugRaycast && Time.unscaledTime >= _dbgNextLogTime)
+                {
+                    Debug.Log($"[LinkLinePuzzle] 候选格 {kv.Key} t={t:F3} vs hit={firstHitDistance:F3} -> {(notOccluded ? "通过" : "被挡")}");
+                    _dbgNextLogTime = Time.unscaledTime + debugLogInterval;
+                }
+                if (notOccluded) return kv.Key;
+            }
         }
         return new(-1, -1);
     }
