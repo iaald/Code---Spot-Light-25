@@ -10,14 +10,15 @@ namespace Kuchinashi.Utils.Progressable
         [SerializeField] private CanvasGroup TargetCanvasGroup;
 
         [Header("Settings")]
-        public float StartAlpha = 0f;
-        public float EndAlpha = 1f;
+        public float InitialAlpha = 0f;
         public bool IsInteractable = true;
         public bool IsBlockRaycasts = true;
 
         private void Awake()
         {
             if (TargetCanvasGroup == null) TargetCanvasGroup = TryGetComponent<CanvasGroup>(out var cg) ? cg : null;
+
+            TargetCanvasGroup.alpha = InitialAlpha;
         }
 
         internal override void Update()
@@ -25,9 +26,9 @@ namespace Kuchinashi.Utils.Progressable
             if (TargetCanvasGroup == null) return;
             base.Update();
 
-            TargetCanvasGroup.alpha = Mathf.Lerp(StartAlpha, EndAlpha, evaluation);
+            TargetCanvasGroup.alpha = evaluation;
             
-            if (Mathf.Approximately(TargetCanvasGroup.alpha, 1f))
+            if (Mathf.Approximately(TargetCanvasGroup.alpha, ProgressCurve.Evaluate(1)))
             {
                 TargetCanvasGroup.blocksRaycasts = IsBlockRaycasts;
                 TargetCanvasGroup.interactable = IsInteractable;
