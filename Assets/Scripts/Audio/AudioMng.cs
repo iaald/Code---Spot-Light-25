@@ -15,11 +15,30 @@ public partial class AudioMng : MonoBehaviour
     public AudioSource sfxSource;
 
     public int puzzleSolveLevel = 1;
+    public string puzzleSolveSFXContent;
     public void PlayPuzzleSolvedSound()
     {
-        if (puzzleSolveLevel < 0) return;
-        PlaySound($"PuzzlePassed{puzzleSolveLevel}");
-        puzzleSolveLevel = 1;
+        if (puzzleSolveLevel < 0)
+        {
+            if (puzzleSolveLevel == -1)
+            {
+                try
+                {
+                    PlaySound(puzzleSolveSFXContent);
+                }
+                catch { }
+                puzzleSolveSFXContent = "";
+            }
+            else
+            {
+                return;
+            }
+        }
+        else
+        {
+            PlaySound($"PuzzlePassed{puzzleSolveLevel}");
+            puzzleSolveLevel = 1;
+        }
     }
 
     void Awake()

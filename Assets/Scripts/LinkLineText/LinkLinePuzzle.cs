@@ -83,11 +83,13 @@ public partial class LinkLinePuzzle : MonoBehaviour
         ownerMap = new int[rows, cols];
         activeMap = new int[rows, cols];
         dirMap = new byte[rows, cols];
+        _preSolveMarkedActions = BuildMarkedActionsFromUnityEvent(OnSolved, typeof(NeedReorderedSFXSettings));
     }
 
     IEnumerator Start()
     {
         audioPlayHelper = GetComponent<AudioPlayHelper>();
+
         yield return new WaitUntil(() => registeredBlocks >= expectedBlocks);
         boardReady = true;
         foreach (var kv in pos2Block)
