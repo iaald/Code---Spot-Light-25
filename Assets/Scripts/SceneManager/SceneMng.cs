@@ -7,6 +7,8 @@ public class SceneMng : MonoSingleton<SceneMng>
 {
     private Coroutine currentSwitching;
 
+    public string InitialSceneName = "Opening Scene";
+
     [Header("Fade Configs")]
     [SerializeField] private float fadeInDuration = 0.25f;   // 0->1
     [SerializeField] private float fadeOutDuration = 0.25f;  // 1->0
@@ -18,7 +20,7 @@ public class SceneMng : MonoSingleton<SceneMng>
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        SwitchSceneImmediately("PuzzleTestScene");
+        SwitchSceneImmediately(InitialSceneName);
     }
 
     public bool SwitchScene(string sceneName)
