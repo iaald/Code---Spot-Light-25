@@ -14,6 +14,14 @@ public partial class AudioMng : MonoBehaviour
     [Header("SFX (oneshot & pitch random)")]
     public AudioSource sfxSource;
 
+    public int puzzleSolveLevel = 1;
+    public void PlayPuzzleSolvedSound()
+    {
+        if (puzzleSolveLevel < 0) return;
+        PlaySound($"PuzzlePassed{puzzleSolveLevel}");
+        puzzleSolveLevel = 1;
+    }
+
     void Awake()
     {
         Instance = this;

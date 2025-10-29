@@ -44,6 +44,7 @@ public partial class LinkLinePuzzle : MonoBehaviour
     private void InvokeOnSolveEvent()
     {
         OnSolved?.Invoke();
+        AudioMng.Instance.PlayPuzzleSolvedSound();
     }
     public List<string> GetAllResults()
     {
@@ -54,5 +55,10 @@ public partial class LinkLinePuzzle : MonoBehaviour
             results.Add(string.Join("", t));
         }
         return results;
+    }
+
+    public void SetPuzzleSolveStatus(int v)
+    {
+        AudioMng.Instance.puzzleSolveLevel = v;
     }
 }
