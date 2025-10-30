@@ -6,6 +6,8 @@ using Kuchinashi.Utils.Progressable;
 
 public class DestroyChildrenWithParticles : MonoBehaviour
 {
+    private Image parent;
+    public Color trans;
     [Header("Particle System Settings")]
     public ParticleSystem particlePrefab;
     public float particleLifetime = 0f;
@@ -14,11 +16,12 @@ public class DestroyChildrenWithParticles : MonoBehaviour
     private CanvasGroupAlphaProgressable canvasGroup;
 
     [ContextMenu("Destroy All Children With Particles")]
+    
 
     private void Start()
     {
         tmpText = GetComponent<TextMeshProUGUI>();
-
+        parent=GetComponent<Image>();
         canvasGroup ??= GetComponent<CanvasGroupAlphaProgressable>();
         canvasGroup.LinearTransition(0.5f);
     }
@@ -41,6 +44,10 @@ public class DestroyChildrenWithParticles : MonoBehaviour
             {
                 psRenderer.sortingLayerID = GetComponentInParent<Canvas>().sortingLayerID;
                 psRenderer.sortingOrder = 999;
+            }
+            if(parent!= null)
+            {
+                parent.color = trans;
             }
 
             Destroy(ps.gameObject, particleLifetime);
