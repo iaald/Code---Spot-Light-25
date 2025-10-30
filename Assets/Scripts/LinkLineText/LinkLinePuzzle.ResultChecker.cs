@@ -64,7 +64,7 @@ public partial class LinkLinePuzzle : MonoBehaviour
     private void InvokeOnSolveEvent()
     {
         OnSolved?.Invoke();
-        if (!PlaySFXAhead)
+        if (!PlaySFXAhead && AudioMng.Instance != null)
         {
             AudioMng.Instance.PlayPuzzleSolvedSound();
         }
@@ -88,12 +88,14 @@ public partial class LinkLinePuzzle : MonoBehaviour
     [NeedReorderedSFXSettings]
     public void SetPuzzleSolveStatus(int v)
     {
+        if (AudioMng.Instance == null) return;
         AudioMng.Instance.puzzleSolveLevel = v;
     }
 
     [NeedReorderedSFXSettings]
     public void SetPuzzleSolveSFXContent(string filename)
     {
+        if (AudioMng.Instance == null) return;
         AudioMng.Instance.puzzleSolveLevel = -1;
         AudioMng.Instance.puzzleSolveSFXContent = filename;
     }
