@@ -35,6 +35,8 @@ namespace DataSystem
             Instance.Serialize();
         }
         public static string GetUsername() => Instance.username;
+
+        [JsonProperty] public string lastScene = "";
     }
 
     public partial class GameProgressData
@@ -53,6 +55,11 @@ namespace DataSystem
             return false;
         }
 
-        [JsonIgnore] public bool IsNewGame => !System.IO.File.Exists(Path);
+        [JsonIgnore] public bool IsNewGame => !System.IO.File.Exists(Path) || string.IsNullOrEmpty(username);
+
+        public void Clear()
+        {
+            if (System.IO.File.Exists(Path)) System.IO.File.Delete(Path);
+        }
     }
 }

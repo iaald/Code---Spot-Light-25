@@ -23,6 +23,8 @@ public class SceneMng : MonoSingleton<SceneMng>
         SwitchSceneImmediately(InitialSceneName);
     }
 
+    public string GetActiveSceneName() => SceneManager.GetActiveScene().name;
+
     public bool SwitchScene(string sceneName)
     {
         if (string.IsNullOrEmpty(sceneName)) return false;

@@ -57,6 +57,8 @@ namespace Mission
 			{
 				mission.OnMissionAbort();
 			}
+
+			GameProgressData.Instance.lastScene = SceneMng.Instance.GetActiveSceneName();
             UpdateToGameProgressData();
         }
 

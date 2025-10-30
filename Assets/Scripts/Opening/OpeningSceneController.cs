@@ -1,3 +1,4 @@
+using DataSystem;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -7,6 +8,9 @@ namespace Opening
 {
     public class OpeningSceneVolumeController : MonoBehaviour
     {
+        public Transform OpeningCG;
+        public Transform Menu;
+
         public Volume volume;
         private ChromaticAberration chromaticAberration;
         private LensDistortion lensDistortion;
@@ -99,12 +103,25 @@ namespace Opening
             {
                 digitalGlitchVolume.intensity.overrideState = true;
             }
+
+            OpeningCG.gameObject.SetActive(false);
+            Menu.gameObject.SetActive(false);
         }
 
         private void Start()
         {
-            AudioMng.Instance.PlayMusicWithFade("undersea_white_noise", 0f, true, 1f, 0.3f);
-            Invoke(nameof(OneSecondHelper), 2f);
+            if (GameProgressData.Instance.IsNewGame)
+            {
+                OpeningCG.gameObject.SetActive(true);
+                volume.gameObject.SetActive(true);
+
+                AudioMng.Instance.PlayMusicWithFade("undersea_white_noise", 0f, true, 1f, 0.3f);
+                Invoke(nameof(OneSecondHelper), 2f);
+            }
+            else
+            {
+                Menu.gameObject.SetActive(true);
+            }
         }
 
         void OneSecondHelper()
@@ -283,6 +300,16 @@ namespace Opening
             AudioMng.Instance.StopMusic();
             SceneMng.Instance.SwitchScene(sceneName);
         }
+
+        public void ClearSave()
+        {
+            GameProgressData.Instance.Clear();
+            Start();
+        }
+
+        public void LoadData() => SceneMng.Instance.SwitchScene(GameProgressData.Instance.lastScene);
+
+        public void QuitApplication() => Application.Quit();
     }
 
 
