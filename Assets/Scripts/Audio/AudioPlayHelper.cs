@@ -17,4 +17,8 @@ public class AudioPlayHelper : MonoBehaviour
     {
         AudioMng.Instance.PlayCurrentOneshot(audioClip);
     }
+    public void PlayClickSound()
+    {
+        AudioMng.Instance.PlaySound("click");
+    }
 }

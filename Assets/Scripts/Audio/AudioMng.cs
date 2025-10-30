@@ -115,6 +115,32 @@ public partial class AudioMng : MonoBehaviour
         audioSource.Stop();
     }
 
+    public AudioSource PlaySound(AudioClip audioClip, float volume = 0.75f, bool useRandom = false)
+    {
+        if (audioClip == null) return null;
+
+        var audioSource = SFXSourcePool.Allocate().GetComponent<AudioSource>();
+        audioSource.gameObject.SetActive(true);
+
+        audioSource.volume = volume;
+
+        if (useRandom)
+        {
+            audioSource.pitch = pitchOffsets[idx++];
+            if (idx == pitchOffsets.Length) idx = 0;
+        }
+        else
+        {
+            audioSource.pitch = 1f;
+        }
+        audioSource.PlayOneShot(audioClip);
+        if (!audioSource.loop)
+        {
+            StartCoroutine(RecycleAfterTime(audioSource, audioClip.length / Mathf.Abs(audioSource.pitch)));
+        }
+        return audioSource;
+    }
+
     public AudioSource PlaySound(string name, float volume = 0.75f, bool useRandom = false)
     {
         AudioClip audioClip = Resources.Load<AudioClip>(name);
