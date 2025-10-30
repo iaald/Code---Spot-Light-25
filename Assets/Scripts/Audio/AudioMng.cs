@@ -17,6 +17,14 @@ public partial class AudioMng : MonoBehaviour
         Instance.SFXSources.Add(audioSource);
         return obj;
     }, obj => {
+        try
+        {
+            var temp = obj.GetComponent<AudioSource>();
+            temp.Stop();
+            temp.clip = null;
+            temp.loop = false;
+        }
+        catch(System.Exception) {}
         obj.SetActive(false);
     });
     public List<AudioSource> SFXSources = new List<AudioSource>();
@@ -105,13 +113,17 @@ public partial class AudioMng : MonoBehaviour
         audioSource.Stop();
     }
 
-    public AudioSource PlaySound(string name, bool useRandom = false)
+    public AudioSource PlaySound(string name, float volume = 0.75f, bool useRandom = false)
     {
         AudioClip audioClip = Resources.Load<AudioClip>(name);
         if (audioClip == null) return null;
 
         audioClip.LoadAudioData();
+        
         var audioSource = SFXSourcePool.Allocate().GetComponent<AudioSource>();
+        audioSource.gameObject.SetActive(true);
+        
+        audioSource.volume = volume;
 
         if (useRandom)
         {

@@ -651,6 +651,10 @@ PrefabInstance:
       propertyPath: SFXSourceTemplate
       value: 
       objectReference: {fileID: 1101701991}
+    - target: {fileID: 7409564548864579219, guid: c112865a6648c1242bef34f6608e3433, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

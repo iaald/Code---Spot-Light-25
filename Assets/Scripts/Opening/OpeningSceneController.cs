@@ -103,7 +103,13 @@ namespace Opening
 
         private void Start()
         {
-            AudioMng.Instance.PlayMusicWithFade("undersea_white_noise", 0f, true, 1f, 1f);
+            AudioMng.Instance.PlayMusicWithFade("undersea_white_noise", 0f, true, 1f, 0.3f);
+            Invoke(nameof(OneSecondHelper), 2f);
+        }
+
+        void OneSecondHelper()
+        {
+            AudioMng.Instance.PlaySound("StartVed", 1);
         }
 
         private void Update()
@@ -214,7 +220,7 @@ namespace Opening
         private AudioSource tinnitusAudioSource;
         public void PlayWhiteNoise()
         {
-            whiteNoiseAudioSource = AudioMng.Instance.PlaySoundWithFade("white_noise", 0f, true, 1f, 0.5f);
+            whiteNoiseAudioSource = AudioMng.Instance.PlaySoundWithFade("white_noise", 0f, true, 1f, 0.2f);
         }
         public void StopWhiteNoise()
         {
@@ -227,7 +233,7 @@ namespace Opening
 
         public void PlayTinnitus()
         {
-            tinnitusAudioSource = AudioMng.Instance.PlaySound("tinnitus");
+            tinnitusAudioSource = AudioMng.Instance.PlaySound("tinnitus", 0.4f);
         }
         public void StopTinnitus()
         {
