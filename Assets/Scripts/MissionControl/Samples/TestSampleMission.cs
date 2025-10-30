@@ -21,7 +21,7 @@ namespace Mission
         public override void OnMissionUpdate(float deltaTime)
         {
             state.totalTime += deltaTime;
-            Debug.Log("TestSampleMission OnMissionUpdate: " + state.totalTime);
+            // Debug.Log("TestSampleMission OnMissionUpdate: " + state.totalTime);
 
             if (Keyboard.current.fKey.wasPressedThisFrame)
             {
