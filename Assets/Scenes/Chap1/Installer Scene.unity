@@ -299,7 +299,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   TargetCanvasGroup: {fileID: 48715047}
-  InitialAlpha: 0
+  InitialProgress: 0
   IsInteractable: 1
   IsBlockRaycasts: 1
 --- !u!1 &56290203
@@ -648,6 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3696cfe5817e8f46bfa6968f4ca852b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trans: {r: 0, g: 0, b: 0, a: 0}
   particlePrefab: {fileID: 2030320604957471091, guid: e0b7d677c2b09ba4cb7eebdc883ca528, type: 3}
   particleLifetime: 2
 --- !u!114 &67199844 stripped
@@ -699,7 +700,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   TargetCanvasGroup: {fileID: 0}
-  InitialAlpha: 0
+  InitialProgress: 0
   IsInteractable: 1
   IsBlockRaycasts: 1
 --- !u!224 &105811593 stripped
@@ -4145,7 +4146,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   TargetCanvasGroup: {fileID: 253944246}
-  InitialAlpha: 0
+  InitialProgress: 0
   IsInteractable: 1
   IsBlockRaycasts: 1
 --- !u!114 &253944248
@@ -4387,7 +4388,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   TargetCanvasGroup: {fileID: 258028087}
-  InitialAlpha: 0
+  InitialProgress: 0
   IsInteractable: 1
   IsBlockRaycasts: 1
 --- !u!224 &258028089
@@ -5807,7 +5808,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   TargetCanvasGroup: {fileID: 588057848}
-  InitialAlpha: 0
+  InitialProgress: 0
   IsInteractable: 1
   IsBlockRaycasts: 1
 --- !u!224 &588057850
@@ -5843,7 +5844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9d7af0167e8b64ca89909fbad226fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: PuzzleTestScene
+  sceneName: School Scene
 --- !u!114 &588057852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9695,7 +9696,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   TargetCanvasGroup: {fileID: 1039051514}
-  InitialAlpha: 0
+  InitialProgress: 0
   IsInteractable: 1
   IsBlockRaycasts: 1
 --- !u!224 &1039051516
@@ -10506,7 +10507,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   TargetCanvasGroup: {fileID: 1154357617}
-  InitialAlpha: 0
+  InitialProgress: 0
   IsInteractable: 1
   IsBlockRaycasts: 1
 --- !u!224 &1154357619
@@ -10637,7 +10638,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   TargetCanvasGroup: {fileID: 1167697175}
-  InitialAlpha: 0
+  InitialProgress: 0
   IsInteractable: 1
   IsBlockRaycasts: 1
 --- !u!224 &1167697177
@@ -18799,7 +18800,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   TargetCanvasGroup: {fileID: 2056216926}
-  InitialAlpha: 0
+  InitialProgress: 0
   IsInteractable: 1
   IsBlockRaycasts: 1
 --- !u!224 &2056216928
@@ -19008,6 +19009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3696cfe5817e8f46bfa6968f4ca852b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trans: {r: 0, g: 0, b: 0, a: 0}
   particlePrefab: {fileID: 2030320604957471091, guid: e0b7d677c2b09ba4cb7eebdc883ca528, type: 3}
   particleLifetime: 2
 --- !u!114 &2096550545 stripped
@@ -19059,7 +19061,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   TargetCanvasGroup: {fileID: 0}
-  InitialAlpha: 0
+  InitialProgress: 0
   IsInteractable: 1
   IsBlockRaycasts: 1
 --- !u!224 &2098484364 stripped
