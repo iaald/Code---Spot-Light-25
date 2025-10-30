@@ -16,7 +16,10 @@ public class EnableChildrenSequentially : MonoBehaviour
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(true);
-            AudioMng.Instance.PlaySound($"alert{random.Next(0, 3)}");
+
+            if (AudioMng.Instance != null)
+                AudioMng.Instance.PlaySound($"alert{random.Next(0, 3)}");
+
             yield return new WaitForSeconds(delay);
         }
     }

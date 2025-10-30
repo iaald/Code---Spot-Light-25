@@ -10,7 +10,7 @@ namespace Kuchinashi.Utils.Progressable
         [SerializeField] private CanvasGroup TargetCanvasGroup;
 
         [Header("Settings")]
-        public float InitialAlpha = 0f;
+        public float InitialProgress = 0f;
         public bool IsInteractable = true;
         public bool IsBlockRaycasts = true;
 
@@ -18,7 +18,7 @@ namespace Kuchinashi.Utils.Progressable
         {
             if (TargetCanvasGroup == null) TargetCanvasGroup = TryGetComponent<CanvasGroup>(out var cg) ? cg : null;
 
-            TargetCanvasGroup.alpha = InitialAlpha;
+            Progress = InitialProgress;
         }
 
         internal override void Update()
