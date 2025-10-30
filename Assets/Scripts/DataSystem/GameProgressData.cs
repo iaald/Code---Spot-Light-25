@@ -28,7 +28,7 @@ namespace DataSystem
             throw new System.NotImplementedException();
         }
 
-        private string username = "";
+        [JsonProperty] public string username = "";
         public static void SetUsername(string username)
         {
             Instance.username = username;
