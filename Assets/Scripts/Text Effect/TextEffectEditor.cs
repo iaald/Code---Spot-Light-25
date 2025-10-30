@@ -1,6 +1,11 @@
 using TMPro;
-using UnityEditor;
 using UnityEngine;
+
+# if UNITY_EDITOR
+
+using UnityEditor;
+
+# endif
 
 [ExecuteInEditMode]
 public class TextEffectEditor : MonoBehaviour
@@ -53,6 +58,8 @@ public class TextEffectEditor : MonoBehaviour
 
 
 }
+
+# if UNITY_EDITOR
 
 [CustomEditor(typeof(TextEffectEditor)), CanEditMultipleObjects]
 public class TextEffectEditorInspector : Editor
@@ -231,3 +238,5 @@ public class TextEffectEditorInspector : Editor
         }
     }
 }
+
+# endif

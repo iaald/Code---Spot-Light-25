@@ -5,11 +5,12 @@ using QFramework;
 using UnityEngine;
 using UnityEngine.UI;
 using Narration;
+using Kuchinashi.Utils.Progressable;
 
 [RequireComponent(typeof(RectTransform))]
 public class WindowPetDialogueBox : MonoBehaviour
 {
-    public Image TextBox;
+    public CanvasGroupAlphaProgressable CanvasGroup;
     public TextMeshProUGUI textMeshProUGUI;
     public float textSpeed = 0.05f; // 每个字符出现的间隔时间
     public Transform OptionsParent;
@@ -21,15 +22,15 @@ public class WindowPetDialogueBox : MonoBehaviour
 
     private void Awake()
     {
-        TextBox = GetComponent<Image>();
+        CanvasGroup = GetComponent<CanvasGroupAlphaProgressable>();
 
         TypeEventSystem.Global.Register<OnStoryEndEvent>(e =>
         {
-            HideText();
+            HideNarration();
             ClearOptions();
         }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
-        HideText();
+        HideNarration(0f);
         ClearOptions();
     }
 
@@ -37,7 +38,6 @@ public class WindowPetDialogueBox : MonoBehaviour
     public void ShowText(string fullText)
     {
         currentContent = fullText;
-        TextBox.gameObject.SetActive(true);
         // 如果上一次的打印还在进行，先停止
         if (typingCoroutine != null)
         {
@@ -87,9 +87,14 @@ public class WindowPetDialogueBox : MonoBehaviour
         }
     }
 
-    public void HideText()
+    public void ShowNarration(float time = 0.5f)
     {
-        TextBox.gameObject.SetActive(false);
+        CanvasGroup.LinearTransition(time);
+    }
+
+    public void HideNarration(float time = 0.5f)
+    {
+        CanvasGroup.InverseLinearTransition(time);
     }
 
     public class Option

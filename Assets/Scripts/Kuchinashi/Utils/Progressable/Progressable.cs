@@ -46,6 +46,12 @@ namespace Kuchinashi.Utils.Progressable
         {
             if (delay > 0f)
                 yield return new WaitForSeconds(delay);
+            
+            if (time == 0f)
+            {
+                Progress = 1f;
+                yield break;
+            }
 
             float elapsedTime = 0f;
             float startValue = Progress;
@@ -89,6 +95,12 @@ namespace Kuchinashi.Utils.Progressable
             if (delay > 0f)
                 yield return new WaitForSeconds(delay);
 
+            if (time == 0f)
+            {
+                Progress = 0f;
+                yield break;
+            }
+
             float elapsedTime = 0f;
             float startValue = Progress;
 
@@ -100,6 +112,32 @@ namespace Kuchinashi.Utils.Progressable
             }
 
             Progress = 0f;
+        }
+
+        public Coroutine LinearTransitionTo(float targetValue, float time, float delay = 0f)
+        {
+            if (currentCoroutine != null)
+                StopCoroutine(currentCoroutine);
+
+            return currentCoroutine = StartCoroutine(LinearTransitionToCoroutine(targetValue, time, delay));
+        }
+
+        private IEnumerator LinearTransitionToCoroutine(float targetValue, float time, float delay = 0f)
+        {
+            if (delay > 0f)
+                yield return new WaitForSeconds(delay);
+
+            float elapsedTime = 0f;
+            float startValue = Progress;
+
+            while (elapsedTime < time)
+            {
+                Progress = Mathf.Lerp(startValue, targetValue, elapsedTime / time);
+                elapsedTime += Time.deltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            Progress = targetValue;
         }
 
         public Coroutine PingPong(float time, float startValue = 0f, float endValue = 1f)

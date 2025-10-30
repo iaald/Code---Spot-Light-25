@@ -52,7 +52,8 @@ public class DestroyChildrenWithParticles : MonoBehaviour
 
             Destroy(ps.gameObject, particleLifetime);
 
-            canvasGroup.InverseLinearTransition(0.5f);
+            if (canvasGroup != null) canvasGroup.InverseLinearTransition(0.5f);
+            
             Destroy(child.gameObject);
             Destroy(gameObject, particleLifetime);
         }

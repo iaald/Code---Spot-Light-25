@@ -34,6 +34,7 @@ namespace Narration
 
                 _currentStory.ChooseChoiceIndex(e.index);
                 Continue();
+                Continue();
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
             TypeEventSystem.Global.Register<RequestSetVariableEvent>(e => {
@@ -102,12 +103,10 @@ namespace Narration
             else if (_currentStory.currentChoices.Count > 0) return;
             else  // Story End
             {
-                // if (_currentPlot != null)
+                if (_currentPlot != null) TypeEventSystem.Global.Send(new OnStoryEndEvent() { plot = _currentPlot });
 
-                TypeEventSystem.Global.Send(new OnStoryEndEvent() { plot = _currentPlot });
-
-                // _currentPlot = null;
-                // _currentStory = null;
+                _currentPlot = null;
+                _currentStory = null;
             }
         }
 

@@ -67,7 +67,7 @@ namespace Narration
         {
             if (!m_CanReceiveInput) return;
 
-            if (InputSystem.GetDevice<Keyboard>().zKey.wasPressedThisFrame)
+            if (InputSystem.actions["NextLine"].WasPressedThisFrame())
             {
                 if (m_CanSkip && !m_DialogueBox.IsTypingComplete)
                 {
@@ -85,13 +85,24 @@ namespace Narration
         private void OnLineReceived(OnLineReadEvent e)
         {
             m_CanSkip = e.tags.TryGetValue("skippable", out var canSkip) && bool.Parse(canSkip);
-            m_DialogueBox.ShowText(e.content);
+
+
+            string content = e.content;
+            content = content.Replace("{username}", GameProgressData.GetUsername());
+            content = content.Replace("{usernameLastWord}", GameProgressData.GetUsername()[^1..].ToString());
+
+            m_DialogueBox.ShowText(content);
         }
 
         private void OnLinesReceived(OnLinesReadEvent e)
         {
             m_CanSkip = e.tags.TryGetValue("skippable", out var canSkip) && bool.Parse(canSkip);
-            m_DialogueBox.ShowText(e.content);
+
+            string content = e.content;
+            content = content.Replace("{username}", GameProgressData.GetUsername());
+            content = content.Replace("{usernameLastWord}", GameProgressData.GetUsername()[^1..].ToString());
+
+            m_DialogueBox.ShowText(content);
             m_DialogueBox.SetOptions(e.lines.Select((line, index) => new WindowPetDialogueBox.Option(index, line.content)).ToList());
         }
     }
