@@ -25,4 +25,10 @@ public class AudioPlayHelper : MonoBehaviour
         if (AudioMng.Instance == null || audioClip == null) return;
         AudioMng.Instance.PlaySound("click");
     }
+
+    public void PlayMusic(string name)
+    {
+        if (AudioMng.Instance == null) return;
+        AudioMng.Instance.PlayMusic(name, loop: true);
+    }
 }

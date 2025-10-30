@@ -10,6 +10,7 @@ namespace Kuchinashi.Utils.Progressable
     {
         public Image TargetImage;
 
+        [Header("Settings")]
         public Color StartColor = Color.white;
         public Color EndColor = Color.white;
 
