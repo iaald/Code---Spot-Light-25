@@ -11,12 +11,14 @@ public partial class AudioMng : MonoBehaviour
 
     [Header("SFX (oneshot & pitch random)")]
     public GameObject SFXSourceTemplate;
-    public SimpleObjectPool<GameObject> SFXSourcePool = new SimpleObjectPool<GameObject>(() => {
+    public SimpleObjectPool<GameObject> SFXSourcePool = new SimpleObjectPool<GameObject>(() =>
+    {
         var obj = Instantiate(Instance.SFXSourceTemplate, Instance.transform);
         var audioSource = obj.GetComponent<AudioSource>();
         Instance.SFXSources.Add(audioSource);
         return obj;
-    }, obj => {
+    }, obj =>
+    {
         try
         {
             var temp = obj.GetComponent<AudioSource>();
@@ -24,7 +26,7 @@ public partial class AudioMng : MonoBehaviour
             temp.clip = null;
             temp.loop = false;
         }
-        catch(System.Exception) {}
+        catch (System.Exception) { }
         obj.SetActive(false);
     });
     public List<AudioSource> SFXSources = new List<AudioSource>();
@@ -119,10 +121,10 @@ public partial class AudioMng : MonoBehaviour
         if (audioClip == null) return null;
 
         audioClip.LoadAudioData();
-        
+
         var audioSource = SFXSourcePool.Allocate().GetComponent<AudioSource>();
         audioSource.gameObject.SetActive(true);
-        
+
         audioSource.volume = volume;
 
         if (useRandom)
@@ -135,8 +137,17 @@ public partial class AudioMng : MonoBehaviour
             audioSource.pitch = 1f;
         }
         audioSource.PlayOneShot(audioClip);
-
+        if (!audioSource.loop)
+        {
+            StartCoroutine(RecycleAfterTime(audioSource, audioClip.length / Mathf.Abs(audioSource.pitch)));
+        }
         return audioSource;
+    }
+
+    IEnumerator RecycleAfterTime(AudioSource audioSource, float time)
+    {
+        yield return new WaitForSecondsRealtime(time);
+        SFXSourcePool.Recycle(audioSource.gameObject);
     }
 
     public AudioSource PlaySoundWithFade(string name, float startVolume = 1, bool loop = false, float fadeDuration = 1f, float targetVolume = 0f)

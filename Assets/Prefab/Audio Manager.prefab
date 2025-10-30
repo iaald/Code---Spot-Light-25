@@ -206,7 +206,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
@@ -596,11 +596,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043031e6b742a8f40adbf2e294e18eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgm1: {fileID: 0}
-  bgm2: {fileID: 0}
   audioSource: {fileID: 1669088709847370190}
-  sfxSource: {fileID: 7409564548864579219}
+  SFXSourceTemplate: {fileID: 3857228352613927472}
+  SFXSources: []
   puzzleSolveLevel: 1
+  puzzleSolveSFXContent: 
   blockSource1: {fileID: 6246483777068632827}
   blockSource2: {fileID: 2718692623544269955}
   poolSize: 10

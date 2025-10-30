@@ -3,8 +3,8 @@ using System.Collections;
 
 public class EnableChildrenSequentially : MonoBehaviour
 {
-    public float delay = 0.5f; // 每个子物体之间的间隔时间
-
+    public float delay = 0.5f; // 每锟斤拷锟斤拷锟斤拷锟斤拷之锟斤拷募锟斤拷时锟斤拷
+    static readonly System.Random random = new();
     public void Startpop()
     {
         StartCoroutine(EnableChildren());
@@ -12,10 +12,11 @@ public class EnableChildrenSequentially : MonoBehaviour
 
     IEnumerator EnableChildren()
     {
-        // 遍历所有子物体
+        // 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(true);
+            AudioMng.Instance.PlaySound($"alert{random.Next(0, 3)}");
             yield return new WaitForSeconds(delay);
         }
     }

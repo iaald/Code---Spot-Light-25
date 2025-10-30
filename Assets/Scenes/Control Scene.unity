@@ -450,11 +450,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1101701991 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3857228352613927472, guid: c112865a6648c1242bef34f6608e3433, type: 3}
-  m_PrefabInstance: {fileID: 7102904499854783685}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2026445547
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,10 +582,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2718692623544269955, guid: c112865a6648c1242bef34f6608e3433, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 7763719234213559043, guid: 962782adb66ee804b810d18df825d34b, type: 2}
     - target: {fileID: 3572978982521350047, guid: c112865a6648c1242bef34f6608e3433, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.87352
@@ -631,29 +622,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6246483777068632827, guid: c112865a6648c1242bef34f6608e3433, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 7763719234213559043, guid: 962782adb66ee804b810d18df825d34b, type: 2}
     - target: {fileID: 7239576190778960136, guid: c112865a6648c1242bef34f6608e3433, type: 3}
       propertyPath: m_Name
       value: Audio Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7377971959396990597, guid: c112865a6648c1242bef34f6608e3433, type: 3}
-      propertyPath: fadeSeconds
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 7377971959396990597, guid: c112865a6648c1242bef34f6608e3433, type: 3}
-      propertyPath: gaussSigmaOct
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7377971959396990597, guid: c112865a6648c1242bef34f6608e3433, type: 3}
-      propertyPath: SFXSourceTemplate
-      value: 
-      objectReference: {fileID: 1101701991}
-    - target: {fileID: 7409564548864579219, guid: c112865a6648c1242bef34f6608e3433, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
