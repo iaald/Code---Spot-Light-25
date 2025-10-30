@@ -33,7 +33,7 @@ namespace Narration
                 if (_currentStory == null) return;
 
                 _currentStory.ChooseChoiceIndex(e.index);
-                // Continue();
+                Continue();
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
 
             TypeEventSystem.Global.Register<RequestSetVariableEvent>(e => {
@@ -71,6 +71,7 @@ namespace Narration
                 {
                     var linesEvent = new OnLinesReadEvent
                     {
+                        content = _currentStory.currentText,
                         lines = new(),
                         tags = ParseTags(_currentStory.currentTags)
                     };
@@ -101,10 +102,12 @@ namespace Narration
             else if (_currentStory.currentChoices.Count > 0) return;
             else  // Story End
             {
-                if (_currentPlot != null) TypeEventSystem.Global.Send(new OnStoryEndEvent() { plot = _currentPlot });
+                // if (_currentPlot != null)
 
-                _currentPlot = null;
-                _currentStory = null;
+                TypeEventSystem.Global.Send(new OnStoryEndEvent() { plot = _currentPlot });
+
+                // _currentPlot = null;
+                // _currentStory = null;
             }
         }
 
@@ -142,6 +145,7 @@ namespace Narration
     }
 
     public struct OnLinesReadEvent {
+        public string content;
         public List<OnLineReadEvent> lines;
         public Dictionary<string, string> tags { get; set; }
     }

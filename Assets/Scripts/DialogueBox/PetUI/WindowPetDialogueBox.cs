@@ -9,18 +9,35 @@ using Narration;
 [RequireComponent(typeof(RectTransform))]
 public class WindowPetDialogueBox : MonoBehaviour
 {
+    public Image TextBox;
     public TextMeshProUGUI textMeshProUGUI;
     public float textSpeed = 0.05f; // 每个字符出现的间隔时间
+    public Transform OptionsParent;
     [SerializeField] private string currentContent;
     private RectTransform rectTransform;
     private Coroutine typingCoroutine;
 
     public bool IsTypingComplete => typingCoroutine == null;
 
+    private void Awake()
+    {
+        TextBox = GetComponent<Image>();
+
+        TypeEventSystem.Global.Register<OnStoryEndEvent>(e =>
+        {
+            HideText();
+            ClearOptions();
+        }).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+        HideText();
+        ClearOptions();
+    }
+
     // 调用此函数开始打印文字
     public void ShowText(string fullText)
     {
         currentContent = fullText;
+        TextBox.gameObject.SetActive(true);
         // 如果上一次的打印还在进行，先停止
         if (typingCoroutine != null)
         {
@@ -70,6 +87,11 @@ public class WindowPetDialogueBox : MonoBehaviour
         }
     }
 
+    public void HideText()
+    {
+        TextBox.gameObject.SetActive(false);
+    }
+
     public class Option
     {
         public int index;
@@ -92,6 +114,28 @@ public class WindowPetDialogueBox : MonoBehaviour
     // pass options=null to clear all option buttons
     public void SetOptions(List<Option> options)
     {
+        ClearOptions();
+
+        if (options == null) return;
+        foreach (var option in options)
+        {
+            var temp = Instantiate(OptionButtonTemplate, OptionsParent);
+            TextMeshProUGUI TMP = temp.GetComponentInChildren<TextMeshProUGUI>();
+            Button button = temp.GetComponentInChildren<Button>();
+            TMP.text = option.caption;
+            button.onClick.AddListener(() =>
+            {
+                // 在这里注册一个事件发送
+                TypeEventSystem.Global.Send(new SelectOptionEvent() { index = option.index });
+                ClearOptions();
+            });
+            option.buttonObj = temp;
+            optsButtons.Add(option);
+        }
+    }
+
+    public void ClearOptions()
+    {
         if (optsButtons.Count != 0)
         {
             foreach (var item in optsButtons)
@@ -102,21 +146,6 @@ public class WindowPetDialogueBox : MonoBehaviour
                 }
             }
             optsButtons.Clear();
-        }
-        if (options == null) return;
-        foreach (var option in options)
-        {
-            var temp = Instantiate(OptionButtonTemplate, transform);
-            TextMeshProUGUI TMP = temp.GetComponentInChildren<TextMeshProUGUI>();
-            Button button = temp.GetComponentInChildren<Button>();
-            TMP.text = option.caption;
-            button.onClick.AddListener(() =>
-            {
-                // 在这里注册一个事件发送
-                Debug.Log($"Here you should send an event - Option IDX {option}");
-            });
-            option.buttonObj = temp;
-            optsButtons.Add(option);
         }
     }
 

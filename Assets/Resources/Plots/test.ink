@@ -1,10 +1,12 @@
-Once upon a time...
-
-This is a really long sentence for skippable test. If you're feeling boring, just press z for skipping this sentence, then you can continue the rest conversation.  #skippable:true
+这是一条测试文案
+这是第二条
+而这是第三条
 
 -
- * There were two choices.
- * There were four lines of content.
+ * 选项一
+ * 选项二
+-
 
-- They lived happily ever after.
-    -> END
+故事结束于此
+
+-> END

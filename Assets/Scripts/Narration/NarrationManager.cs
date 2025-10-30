@@ -91,6 +91,7 @@ namespace Narration
         private void OnLinesReceived(OnLinesReadEvent e)
         {
             m_CanSkip = e.tags.TryGetValue("skippable", out var canSkip) && bool.Parse(canSkip);
+            m_DialogueBox.ShowText(e.content);
             m_DialogueBox.SetOptions(e.lines.Select((line, index) => new WindowPetDialogueBox.Option(index, line.content)).ToList());
         }
     }
