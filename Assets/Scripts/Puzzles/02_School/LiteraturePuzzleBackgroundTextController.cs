@@ -11,6 +11,7 @@ namespace Puzzle.School
         private void Awake()
         {
             text = GetComponent<TMP_Text>();
+            text.text = "";
         }
 
         public void AddText(string text)
